@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Apigen.Vikunja.Client/Apigen.Vikunja.Client.csproj" />
+    <Project Path="src/Apigen.Vikunja.Models/Apigen.Vikunja.Models.csproj" />
+  </Folder>
+</Solution>

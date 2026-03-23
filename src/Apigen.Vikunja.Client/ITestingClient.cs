@@ -1,0 +1,20 @@
+using System.Text.Json;
+using System.Threading.Tasks;
+using Apigen.Vikunja.Models;
+
+#nullable enable
+
+namespace Apigen.Vikunja.Client;
+
+/// <summary>
+/// Interface for testing operations
+/// </summary>
+public interface ITestingClient
+{
+  /// <summary>
+  /// Reset the db to a defined state
+  /// Operation: PATCH /test/{table}
+  /// </summary>
+  Task<List<User>> PatchAsync(string table);
+
+}

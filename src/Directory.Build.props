@@ -1,0 +1,26 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Frank Hommers</Authors>
+    <Company>Initialize.nl</Company>
+    <Copyright>Copyright (c) Frank Hommers / Initialize.nl</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/apigen-dotnet/vikunja</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/apigen-dotnet/vikunja</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Apigen.Vikunja.Models'">
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Apigen.Vikunja.Client'">
+    <PackageId>Apigen.Vikunja.Client</PackageId>
+    <Version>0.24.0</Version>
+    <Description>Generated C# client for the Vikunja task management API</Description>
+    <PackageTags>vikunja;api;client;openapi;apigen;tasks;todo</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(MSBuildProjectName)' == 'Apigen.Vikunja.Client'">
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>

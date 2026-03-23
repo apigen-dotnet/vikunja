@@ -1,0 +1,695 @@
+# ApiGenerator Configuration File for Vikunja
+# This file configures how C# models and API clients are generated from OpenAPI specifications
+
+input_path = "specs/vikunja-patched.json"
+output_path = "src"
+target_framework = "net10.0"
+generate_nullable_reference_types = true
+generate_data_annotations = true
+
+# Global using statements added to all generated files
+global_usings = [
+    "System.Text.Json.Serialization"
+]
+
+# Models Generation Settings
+[models]
+namespace = "Apigen.Vikunja.Models"
+project_name = "Apigen.Vikunja.Models"
+
+# Model generation strategy
+[model_generation]
+strategy = "SeparateWithDeduplication"  # Options: "AlwaysSeparate", "SeparateWithDeduplication", "SingleModel"
+request_suffix = "Request"
+response_suffix = ""
+generate_to_request_extensions = true
+
+# Enum generation configuration
+[enum_generation]
+generation_mode = "Raw"  # Use simple, clean enum generation
+add_json_string_enum_converter = true  # Add JsonStringEnumConverter attribute to enums
+add_json_string_enum_member_name = true  # Add JsonStringEnumMemberName attributes for explicit mapping (.NET 9+)
+
+# JSON Serialization Settings
+[serialization]
+nullable_for_optional_properties = true  # Make optional value types nullable (e.g., int? instead of int)
+ignore_condition = "WhenWritingNull"  # Don't serialize null values
+
+# API Client Generation Settings
+[client]
+generate_client = true
+namespace = "Apigen.Vikunja.Client"
+project_name = "Apigen.Vikunja.Client"
+client_class_name = "VikunjaApiClient"
+use_async_suffix = true
+generate_interfaces = true
+use_ilogger = true
+
+# Request class organization
+[client.request_organization]
+strategy = "individual_files"  # Options: "single_file", "individual_files", "by_resource"
+directory = "Requests"
+include_base_classes = true
+
+# Naming convention overrides
+[naming]
+
+# Vikunja uses non-standard HTTP methods:
+# - PUT is typically used for CREATE/ADD operations
+# - POST is typically used for UPDATE operations
+# Exception: /labels/{id} uses PUT for update (more RESTful)
+#
+# All overrides below match the actual intent from OpenAPI summaries
+[[naming.path_based_overrides]]
+operation_id = "Gettask"
+path_filter = "^/tasks/all$"
+new_operation_id = "GetAllTasks"
+description = "GET /tasks/all - Get all tasks"
+
+[[naming.path_based_overrides]]
+operation_id = "Gettask"
+path_filter = "^/tasks/[^/]+/attachments/[^/]+$"
+new_operation_id = "GetTaskAttachment"
+description = "GET /tasks/{id}/attachments/{attachmentID} - Get one attachment"
+
+[[naming.path_based_overrides]]
+operation_id = "Gettask"
+path_filter = "^/tasks/[^/]+/attachments$"
+new_operation_id = "GetTaskAttachments"
+description = "GET /tasks/{id}/attachments - Get all attachments for one task"
+
+[[naming.path_based_overrides]]
+operation_id = "Gettask"
+path_filter = "^/tasks/[^/]+$"
+new_operation_id = "GetTask"
+description = "GET /tasks/{id} - Get one task"
+
+[[naming.path_based_overrides]]
+operation_id = "Gettask"
+path_filter = "^/projects/.*/views/.*/tasks$"
+new_operation_id = "GetTasks"
+description = "GET /projects/{id}/views/{view}/tasks - Get tasks in a project"
+
+[[naming.path_based_overrides]]
+operation_id = "Puttask"
+path_filter = ".*/projects/.*/tasks$"
+new_operation_id = "CreateTask"
+description = "PUT /projects/{id}/tasks - Create a task"
+
+[[naming.path_based_overrides]]
+operation_id = "Puttask"
+path_filter = ".*/tasks/.*/attachments$"
+new_operation_id = "UploadTaskAttachment"
+description = "PUT /tasks/{id}/attachments - Upload a task attachment"
+
+[[naming.path_based_overrides]]
+operation_id = "Puttask"
+path_filter = ".*/tasks/.*/comments$"
+new_operation_id = "CreateTaskComment"
+description = "PUT /tasks/{taskID}/comments - Create a new task comment"
+
+[[naming.path_based_overrides]]
+operation_id = "Puttask"
+path_filter = ".*/tasks/.*/relations$"
+new_operation_id = "CreateTaskRelation"
+description = "PUT /tasks/{taskID}/relations - Create a new relation between two tasks"
+
+[[naming.path_based_overrides]]
+operation_id = "Puttask"
+path_filter = ".*/reactions$"
+new_operation_id = "AddReaction"
+description = "PUT /{kind}/{id}/reactions - Add a reaction to an entity"
+
+[[naming.path_based_overrides]]
+operation_id = "Posttask"
+path_filter = ".*/buckets/.*/tasks$"
+new_operation_id = "AddTaskToBucket"
+description = "POST /projects/{project}/views/{view}/buckets/{bucket}/tasks - Update a task bucket"
+
+[[naming.path_based_overrides]]
+operation_id = "Posttask"
+path_filter = ".*/tasks/bulk$"
+new_operation_id = "BulkUpdateTasks"
+description = "POST /tasks/bulk"
+
+[[naming.path_based_overrides]]
+operation_id = "Posttask"
+path_filter = "^/tasks/[^/]+$"
+new_operation_id = "UpdateTask"
+description = "POST /tasks/{id} - Update a task"
+
+[[naming.path_based_overrides]]
+operation_id = "Posttask"
+path_filter = ".*/tasks/.*/position$"
+new_operation_id = "UpdateTaskPosition"
+description = "POST /tasks/{id}/position - Updates a task position"
+
+[[naming.path_based_overrides]]
+operation_id = "Posttask"
+path_filter = ".*/comments/[^/]+$"
+new_operation_id = "UpdateTaskComment"
+description = "POST /tasks/{taskID}/comments/{commentID} - Update an existing task comment"
+
+[[naming.path_based_overrides]]
+operation_id = "Posttask"
+path_filter = ".*/reactions/delete$"
+new_operation_id = "DeleteReaction"
+description = "POST /{kind}/{id}/reactions/delete"
+
+# === LABELS ===
+[[naming.path_based_overrides]]
+operation_id = "Putlabels"
+path_filter = "^/labels$"
+new_operation_id = "CreateLabel"
+description = "PUT /labels - Create a label"
+
+[[naming.path_based_overrides]]
+operation_id = "Putlabels"
+path_filter = "^/labels/[^/]+$"
+new_operation_id = "UpdateLabel"
+description = "PUT /labels/{id} - Update a label (exception: PUT for update)"
+
+[[naming.path_based_overrides]]
+operation_id = "Putlabels"
+path_filter = ".*/tasks/.*/labels$"
+new_operation_id = "AddLabelToTask"
+description = "PUT /tasks/{task}/labels - Add a label to a task"
+
+[[naming.path_based_overrides]]
+operation_id = "Posttask"
+path_filter = ".*/labels/bulk$"
+new_operation_id = "UpdateTaskLabels"
+description = "POST /tasks/{taskID}/labels/bulk - Update all labels on a task"
+
+# === PROJECTS ===
+[[naming.path_based_overrides]]
+operation_id = "Putproject"
+path_filter = "^/projects$"
+new_operation_id = "CreateProject"
+description = "PUT /projects - Creates a new project"
+
+[[naming.path_based_overrides]]
+operation_id = "Postproject"
+path_filter = "^/projects/[^/]+$"
+new_operation_id = "UpdateProject"
+description = "POST /projects/{id} - Updates a project"
+
+[[naming.path_based_overrides]]
+operation_id = "Putproject"
+path_filter = ".*/projects/.*/duplicate$"
+new_operation_id = "DuplicateProject"
+description = "PUT /projects/{projectID}/duplicate - Duplicate an existing project"
+
+[[naming.path_based_overrides]]
+operation_id = "Postproject"
+path_filter = ".*/backgrounds/unsplash$"
+new_operation_id = "SetUnsplashBackground"
+description = "POST /projects/{id}/backgrounds/unsplash - Set an unsplash photo as project background"
+
+[[naming.path_based_overrides]]
+operation_id = "Putproject"
+path_filter = ".*/backgrounds/upload$"
+new_operation_id = "UploadProjectBackground"
+description = "PUT /projects/{id}/backgrounds/upload - Upload a project background"
+
+[[naming.path_based_overrides]]
+operation_id = "Getproject"
+path_filter = "^/projects/[^/]+/background$"
+new_operation_id = "GetProjectBackground"
+description = "GET /projects/{id}/background - Get the project background"
+
+[[naming.path_based_overrides]]
+operation_id = "Deleteproject"
+path_filter = "^/projects/[^/]+/background$"
+new_operation_id = "RemoveProjectBackground"
+description = "DELETE /projects/{id}/background - Remove a project background"
+
+[[naming.path_based_overrides]]
+operation_id = "Getproject"
+path_filter = ".*unsplash/image/\\{image\\}$"
+new_operation_id = "GetUnsplashImage"
+description = "GET /backgrounds/unsplash/image/{image} - Get an unsplash image"
+
+[[naming.path_based_overrides]]
+operation_id = "Getproject"
+path_filter = "backgrounds/unsplash/image/\\{image\\}/thumb$"
+new_operation_id = "GetUnsplashThumbnail"
+description = "GET /backgrounds/unsplash/image/{image}/thumb - Get an unsplash thumbnail image"
+
+[[naming.path_based_overrides]]
+operation_id = "Getproject"
+path_filter = "^/?backgrounds/unsplash/search$"
+new_operation_id = "SearchUnsplashBackgrounds"
+description = "GET /backgrounds/unsplash/search - Search for a background from unsplash"
+
+# === PROJECT VIEWS ===
+[[naming.path_based_overrides]]
+operation_id = "Putproject"
+path_filter = ".*/views$"
+new_operation_id = "CreateProjectView"
+description = "PUT /projects/{project}/views - Create a project view"
+
+[[naming.path_based_overrides]]
+operation_id = "Postproject"
+path_filter = ".*/views/[^/]+$"
+new_operation_id = "UpdateProjectView"
+description = "POST /projects/{project}/views/{id} - Updates a project view"
+
+# === BUCKETS ===
+[[naming.path_based_overrides]]
+operation_id = "Putproject"
+path_filter = ".*/views/.*/buckets$"
+new_operation_id = "CreateBucket"
+description = "PUT /projects/{id}/views/{view}/buckets - Create a new bucket"
+
+[[naming.path_based_overrides]]
+operation_id = "Postproject"
+path_filter = ".*/buckets/[^/]+$"
+new_operation_id = "UpdateBucket"
+description = "POST /projects/{projectID}/views/{view}/buckets/{bucketID} - Update an existing bucket"
+
+# === WEBHOOKS ===
+[[naming.path_based_overrides]]
+operation_id = "Putwebhooks"
+path_filter = ".*/webhooks$"
+new_operation_id = "CreateWebhook"
+description = "PUT /projects/{id}/webhooks - Create a webhook target"
+
+[[naming.path_based_overrides]]
+operation_id = "Postwebhooks"
+path_filter = ".*/webhooks/[^/]+$"
+new_operation_id = "UpdateWebhook"
+description = "POST /projects/{id}/webhooks/{webhookID} - Change a webhook target's events"
+
+# === TEAMS ===
+[[naming.path_based_overrides]]
+operation_id = "Putteam"
+path_filter = "^/teams$"
+new_operation_id = "CreateTeam"
+description = "PUT /teams - Creates a new team"
+
+[[naming.path_based_overrides]]
+operation_id = "Postteam"
+path_filter = "^/teams/[^/]+$"
+new_operation_id = "UpdateTeam"
+description = "POST /teams/{id} - Updates a team"
+
+[[naming.path_based_overrides]]
+operation_id = "Putteam"
+path_filter = ".*/members$"
+new_operation_id = "AddTeamMember"
+description = "PUT /teams/{id}/members - Add a user to a team"
+
+[[naming.path_based_overrides]]
+operation_id = "Postteam"
+path_filter = ".*/members/.*/admin$"
+new_operation_id = "ToggleTeamMemberAdmin"
+description = "POST /teams/{id}/members/{userID}/admin - Toggle a team member's admin status"
+
+# === SHARING (Projects) ===
+[[naming.path_based_overrides]]
+operation_id = "Putsharing"
+path_filter = ".*/shares$"
+new_operation_id = "CreateProjectShare"
+description = "PUT /projects/{project}/shares - Share a project via link"
+
+[[naming.path_based_overrides]]
+operation_id = "Putsharing"
+path_filter = ".*/projects/.*/users$"
+new_operation_id = "AddUserToProject"
+description = "PUT /projects/{id}/users - Add a user to a project"
+
+[[naming.path_based_overrides]]
+operation_id = "Postsharing"
+path_filter = ".*/users/[^/]+$"
+new_operation_id = "UpdateProjectUser"
+description = "POST /projects/{projectID}/users/{userID} - Update a user <-> project relation"
+
+[[naming.path_based_overrides]]
+operation_id = "Putsharing"
+path_filter = ".*/projects/.*/teams$"
+new_operation_id = "AddTeamToProject"
+description = "PUT /projects/{id}/teams - Add a team to a project"
+
+[[naming.path_based_overrides]]
+operation_id = "Postsharing"
+path_filter = ".*/teams/[^/]+$"
+new_operation_id = "UpdateProjectTeam"
+description = "POST /projects/{projectID}/teams/{teamID} - Update a team <-> project relation"
+
+[[naming.path_based_overrides]]
+operation_id = "Postsharing"
+path_filter = "^/shares/.*/auth$"
+new_operation_id = "AuthenticateShare"
+description = "POST /shares/{share}/auth - Get an auth token for a share"
+
+# === FILTERS ===
+[[naming.path_based_overrides]]
+operation_id = "Putfilter"
+path_filter = "^/filters$"
+new_operation_id = "CreateFilter"
+description = "PUT /filters - Creates a new saved filter"
+
+[[naming.path_based_overrides]]
+operation_id = "Postfilter"
+path_filter = "^/filters/[^/]+$"
+new_operation_id = "UpdateFilter"
+description = "POST /filters/{id} - Updates a saved filter"
+
+# === ASSIGNEES ===
+[[naming.path_based_overrides]]
+operation_id = "Putassignees"
+path_filter = ".*/assignees$"
+new_operation_id = "AddAssignee"
+description = "PUT /tasks/{taskID}/assignees - Add a new assignee to a task"
+
+[[naming.path_based_overrides]]
+operation_id = "Postassignees"
+path_filter = ".*/assignees/bulk$"
+new_operation_id = "AddMultipleAssignees"
+description = "POST /tasks/{taskID}/assignees/bulk - Add multiple new assignees to a task"
+
+# === SUBSCRIPTIONS ===
+[[naming.path_based_overrides]]
+operation_id = "Putsubscriptions"
+path_filter = "^/subscriptions/"
+new_operation_id = "Subscribe"
+description = "PUT /subscriptions/{entity}/{entityID} - Subscribes the current user to an entity"
+
+# === REACTIONS ===
+[[naming.path_based_overrides]]
+operation_id = "Gettask"
+path_filter = "^/\\{kind\\}/\\{id\\}/reactions$"
+new_operation_id = "GetReactions"
+description = "GET /{kind}/{id}/reactions - Get all reactions for an entity"
+
+[[naming.path_based_overrides]]
+operation_id = "Puttask"
+path_filter = "^/\\{kind\\}/\\{id\\}/reactions$"
+new_operation_id = "AddReaction"
+description = "PUT /{kind}/{id}/reactions - Add a reaction to an entity"
+
+[[naming.path_based_overrides]]
+operation_id = "Posttask"
+path_filter = "^/\\{kind\\}/\\{id\\}/reactions/delete$"
+new_operation_id = "RemoveReaction"
+description = "POST /{kind}/{id}/reactions/delete - Remove user's reaction"
+
+# === NOTIFICATIONS ===
+[[naming.path_based_overrides]]
+operation_id = "Postsubscriptions"
+path_filter = "^/notifications$"
+new_operation_id = "MarkAllNotificationsRead"
+description = "POST /notifications - Mark all notifications of a user as read"
+
+[[naming.path_based_overrides]]
+operation_id = "Postsubscriptions"
+path_filter = "^/notifications/[^/]+$"
+new_operation_id = "MarkNotificationRead"
+description = "POST /notifications/{id} - Mark a notification as (un-)read"
+
+# === AUTH ===
+[[naming.path_based_overrides]]
+operation_id = "Postauth"
+path_filter = "^/login$"
+new_operation_id = "Login"
+description = "POST /login - Login"
+
+[[naming.path_based_overrides]]
+operation_id = "Postauth"
+path_filter = "^/register$"
+new_operation_id = "Register"
+description = "POST /register - Register"
+
+[[naming.path_based_overrides]]
+operation_id = "Postauth"
+path_filter = ".*/openid/.*/callback$"
+new_operation_id = "OpenIdCallback"
+description = "POST /auth/openid/{provider}/callback - Authenticate a user with OpenID Connect"
+
+# === API TOKENS ===
+[[naming.path_based_overrides]]
+operation_id = "Putapi"
+path_filter = "^/tokens$"
+new_operation_id = "CreateApiToken"
+description = "PUT /tokens - Create a new api token"
+
+# === USER ===
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/confirm$"
+new_operation_id = "ConfirmEmail"
+description = "POST /user/confirm - Confirm the email of a new user"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/password/token$"
+new_operation_id = "RequestPasswordResetToken"
+description = "POST /user/password/token - Request password reset token"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/password/reset$"
+new_operation_id = "ResetPassword"
+description = "POST /user/password/reset - Resets a password"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/password$"
+new_operation_id = "ChangePassword"
+description = "POST /user/password - Change password"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/settings/email$"
+new_operation_id = "UpdateEmail"
+description = "POST /user/settings/email - Update email address"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/settings/general$"
+new_operation_id = "UpdateUserSettings"
+description = "POST /user/settings/general - Change general user settings"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/settings/avatar$"
+new_operation_id = "SetAvatarProvider"
+description = "POST /user/settings/avatar - Set the user's avatar"
+
+[[naming.path_based_overrides]]
+operation_id = "Putuser"
+path_filter = ".*/avatar/upload$"
+new_operation_id = "UploadAvatar"
+description = "PUT /user/settings/avatar/upload - Upload a user avatar"
+
+[[naming.path_based_overrides]]
+operation_id = "Putuser"
+path_filter = ".*/token/caldav$"
+new_operation_id = "GenerateCaldavToken"
+description = "PUT /user/settings/token/caldav - Generate a caldav token"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = ".*/totp/enroll$"
+new_operation_id = "EnrollTotp"
+description = "POST /user/settings/totp/enroll - Enroll a user into totp"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = ".*/totp/enable$"
+new_operation_id = "EnableTotp"
+description = "POST /user/settings/totp/enable - Enable a previously enrolled totp setting"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = ".*/totp/disable$"
+new_operation_id = "DisableTotp"
+description = "POST /user/settings/totp/disable - Disable totp settings"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/deletion/request$"
+new_operation_id = "RequestAccountDeletion"
+description = "POST /user/deletion/request - Request the deletion of the user"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/deletion/confirm$"
+new_operation_id = "ConfirmAccountDeletion"
+description = "POST /user/deletion/confirm - Confirm a user deletion request"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/deletion/cancel$"
+new_operation_id = "CancelAccountDeletion"
+description = "POST /user/deletion/cancel - Abort a user deletion request"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/export/request$"
+new_operation_id = "RequestDataExport"
+description = "POST /user/export/request - Request a user data export"
+
+[[naming.path_based_overrides]]
+operation_id = "Postuser"
+path_filter = "^/user/export/download$"
+new_operation_id = "DownloadDataExport"
+description = "POST /user/export/download - Download a user data export"
+
+[[naming.path_based_overrides]]
+operation_id = "PostUserToken"
+path_filter = "^/user/token$"
+new_operation_id = "RenewToken"
+description = "POST /user/token - Renew user token"
+
+# === MIGRATIONS ===
+[[naming.path_based_overrides]]
+operation_id = "Postmigration"
+path_filter = ".*/microsoft-todo/migrate$"
+new_operation_id = "MigrateFromMicrosoftTodo"
+description = "POST /migration/microsoft-todo/migrate - Migrate from Microsoft Todo"
+
+[[naming.path_based_overrides]]
+operation_id = "Postmigration"
+path_filter = ".*/ticktick/migrate$"
+new_operation_id = "MigrateFromTickTick"
+description = "POST /migration/ticktick/migrate - Import from TickTick backup"
+
+[[naming.path_based_overrides]]
+operation_id = "Postmigration"
+path_filter = ".*/todoist/migrate$"
+new_operation_id = "MigrateFromTodoist"
+description = "POST /migration/todoist/migrate - Migrate from Todoist"
+
+[[naming.path_based_overrides]]
+operation_id = "Postmigration"
+path_filter = ".*/trello/migrate$"
+new_operation_id = "MigrateFromTrello"
+description = "POST /migration/trello/migrate - Migrate from Trello"
+
+[[naming.path_based_overrides]]
+operation_id = "PostMigrationVikunjaFileMigrate"
+path_filter = ".*/vikunja-file/migrate$"
+new_operation_id = "ImportFromVikunjaExport"
+description = "POST /migration/vikunja-file/migrate - Import from Vikunja data export"
+
+# Type name overrides - comprehensive prefix transformation strategy
+# Handle collisions first (most specific patterns first)
+
+# COLLISION: Task conflicts with System.Threading.Tasks.Task from BCL
+[[type_name_overrides]]
+pattern = "^models\\.Task$"
+new_name = "TaskItem"
+reason = "Avoid collision with System.Threading.Tasks.Task"
+
+# COLLISION: File conflicts with System.IO.File from BCL
+[[type_name_overrides]]
+pattern = "^files\\.File$"
+new_name = "FileAttachment"
+reason = "Avoid collision with System.IO.File, more descriptive name for file attachments"
+
+# COLLISION: Migration appears 3 times - keep provider prefix
+[[type_name_overrides]]
+pattern = "^microsofttodo\\.Migration$"
+new_name = "MicrosoftTodoMigration"
+reason = "Keep provider name to avoid collision with other Migration types"
+
+[[type_name_overrides]]
+pattern = "^todoist\\.Migration$"
+new_name = "TodoistMigration"
+reason = "Keep provider name to avoid collision with other Migration types"
+
+[[type_name_overrides]]
+pattern = "^trello\\.Migration$"
+new_name = "TrelloMigration"
+reason = "Keep provider name to avoid collision with other Migration types"
+
+# COLLISION: Token appears 2 times - keep module prefix
+[[type_name_overrides]]
+pattern = "^auth\\.Token$"
+new_name = "AuthToken"
+reason = "Keep module name to avoid collision with user.Token"
+
+[[type_name_overrides]]
+pattern = "^user\\.Token$"
+new_name = "UserToken"
+reason = "Keep module name to avoid collision with auth.Token"
+
+# Remove prefixes for all other schemas (generic patterns last)
+# These are safe because no collisions exist
+
+[[type_name_overrides]]
+pattern = "^models\\.(.+)$"
+new_name = "$1"
+reason = "Remove models. prefix (44 schemas)"
+
+[[type_name_overrides]]
+pattern = "^user\\.(.+)$"
+new_name = "$1"
+reason = "Remove user. prefix for non-collision schemas"
+
+[[type_name_overrides]]
+pattern = "^v1\\.(.+)$"
+new_name = "$1"
+reason = "Remove v1. version prefix"
+
+[[type_name_overrides]]
+pattern = "^auth\\.(.+)$"
+new_name = "$1"
+reason = "Remove auth. prefix for non-collision schemas"
+
+[[type_name_overrides]]
+pattern = "^background\\.(.+)$"
+new_name = "$1"
+reason = "Remove background. prefix"
+
+[[type_name_overrides]]
+pattern = "^files\\.(.+)$"
+new_name = "$1"
+reason = "Remove files. prefix"
+
+[[type_name_overrides]]
+pattern = "^handler\\.(.+)$"
+new_name = "$1"
+reason = "Remove handler. prefix"
+
+[[type_name_overrides]]
+pattern = "^migration\\.(.+)$"
+new_name = "$1"
+reason = "Remove migration. prefix for non-collision schemas"
+
+[[type_name_overrides]]
+pattern = "^notifications\\.(.+)$"
+new_name = "$1"
+reason = "Remove notifications. prefix"
+
+[[type_name_overrides]]
+pattern = "^openid\\.(.+)$"
+new_name = "$1"
+reason = "Remove openid. prefix"
+
+[[type_name_overrides]]
+pattern = "^web\\.(.+)$"
+new_name = "$1"
+reason = "Remove web. prefix"
+
+[[type_name_overrides]]
+pattern = "^code_vikunja_io_api_pkg_modules_auth_openid\\.(.+)$"
+new_name = "OpenId$1"
+reason = "Simplify long package path to OpenId prefix"
+
+# Code formatting preferences
+[formatting]
+use_spaces = true
+indent_width = 2
+
+# Auto-generated file headers
+[header]
+include_header = true
+include_timestamp = false
+include_source = true
+include_generator_info = true
+include_config_info = false
+custom_text = "Vikunja API Models - Auto-generated from OpenAPI specification"
+
