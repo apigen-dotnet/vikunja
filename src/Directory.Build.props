@@ -17,10 +17,10 @@
     <Version>0.24.0</Version>
     <Description>Generated C# client for the Vikunja task management API</Description>
     <PackageTags>vikunja;api;client;openapi;apigen;tasks;todo</PackageTags>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>NUGET.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(MSBuildProjectName)' == 'Apigen.Vikunja.Client'">
-    <None Include="../../README.md" Pack="true" PackagePath="/" />
+    <None Include="../../NUGET.md" Pack="true" PackagePath="/" />
   </ItemGroup>
 </Project>
