@@ -1,0 +1,81 @@
+name: Update OpenAPI Spec
+
+on:
+  schedule:
+    - cron: '0 18 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-spec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Read upstream config
+        id: config
+        run: |
+          if [ ! -f specs/upstream.toml ]; then
+            echo "No specs/upstream.toml found"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          enabled=$(grep '^enabled' specs/upstream.toml | sed 's/.*= *//' | tr -d '"' | tr -d "'")
+          if [ "$enabled" != "true" ]; then
+            echo "Upstream spec fetching is disabled"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          url=$(grep '^url' specs/upstream.toml | sed 's/.*= *//' | tr -d '"')
+          target=$(grep '^target' specs/upstream.toml | sed 's/.*= *//' | tr -d '"')
+
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "target=$target" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Download upstream spec
+        if: steps.config.outputs.skip != 'true'
+        run: |
+          curl -fsSL "${{ steps.config.outputs.url }}" -o "${{ steps.config.outputs.target }}"
+
+      - name: Check for changes
+        if: steps.config.outputs.skip != 'true'
+        id: diff
+        run: |
+          if git diff --quiet "${{ steps.config.outputs.target }}"; then
+            echo "No changes detected"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Changes detected"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Pull Request
+        if: steps.config.outputs.skip != 'true' && steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b update-openapi-spec
+          git add "${{ steps.config.outputs.target }}"
+          git commit -m "chore: update upstream OpenAPI spec"
+          git push -f origin update-openapi-spec
+
+          EXISTING_PR=$(gh pr list --head update-openapi-spec --json number --jq '.[0].number')
+          if [ -n "$EXISTING_PR" ]; then
+            echo "PR #$EXISTING_PR already exists, branch updated"
+          else
+            gh pr create \
+              --title "chore: update upstream OpenAPI spec" \
+              --body "Automated update of the upstream OpenAPI specification.
+
+          Downloaded from: \`${{ steps.config.outputs.url }}\`
+
+          Please review the changes and merge if appropriate."
+          fi
