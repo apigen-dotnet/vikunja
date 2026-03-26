@@ -696,7 +696,7 @@ public class UserClient
   /// Totp setting for the current user
   /// Operation: GET /user/settings/totp
   /// </summary>
-  public async Task<TOTP> GetUserSettingsTotpAsync()
+  public async Task<Totp> GetUserSettingsTotpAsync()
   {
     string url = "user/settings/totp";
 
@@ -720,8 +720,8 @@ public class UserClient
     }
 
     HttpClientLog.ResponseBody(_logger, url, responseContent);
-    TOTP? result = JsonSerializer.Deserialize<TOTP>(responseContent, JsonConfig.Default);
-    return result ?? new TOTP();
+    Totp? result = JsonSerializer.Deserialize<Totp>(responseContent, JsonConfig.Default);
+    return result ?? new Totp();
   }
 
 
@@ -765,13 +765,13 @@ public class UserClient
   /// Enable a previously enrolled totp setting.
   /// Operation: POST /user/settings/totp/enable
   /// </summary>
-  public async Task<Message> EnableTotpAsync(Apigen.Vikunja.Models.TOTPPasscode tOTPPasscode)
+  public async Task<Message> EnableTotpAsync(Apigen.Vikunja.Models.TotpPasscode totpPasscode)
   {
     string url = "user/settings/totp/enable";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.RequestStarted(_logger, "POST", url);
-    string json = JsonSerializer.Serialize(tOTPPasscode, JsonConfig.Default);
+    string json = JsonSerializer.Serialize(totpPasscode, JsonConfig.Default);
     HttpClientLog.RequestBody(_logger, "POST", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
@@ -801,7 +801,7 @@ public class UserClient
   /// Enroll a user into totp
   /// Operation: POST /user/settings/totp/enroll
   /// </summary>
-  public async Task<TOTP> EnrollTotpAsync()
+  public async Task<Totp> EnrollTotpAsync()
   {
     string url = "user/settings/totp/enroll";
 
@@ -825,8 +825,8 @@ public class UserClient
     }
 
     HttpClientLog.ResponseBody(_logger, url, responseContent);
-    TOTP? result = JsonSerializer.Deserialize<TOTP>(responseContent, JsonConfig.Default);
-    return result ?? new TOTP();
+    Totp? result = JsonSerializer.Deserialize<Totp>(responseContent, JsonConfig.Default);
+    return result ?? new Totp();
   }
 
 

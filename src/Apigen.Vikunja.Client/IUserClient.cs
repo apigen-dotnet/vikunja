@@ -129,7 +129,7 @@ public interface IUserClient
   /// Totp setting for the current user
   /// Operation: GET /user/settings/totp
   /// </summary>
-  Task<TOTP> GetUserSettingsTotpAsync();
+  Task<Totp> GetUserSettingsTotpAsync();
 
   /// <summary>
   /// Disable totp settings
@@ -141,13 +141,13 @@ public interface IUserClient
   /// Enable a previously enrolled totp setting.
   /// Operation: POST /user/settings/totp/enable
   /// </summary>
-  Task<Message> EnableTotpAsync(Apigen.Vikunja.Models.TOTPPasscode tOTPPasscode);
+  Task<Message> EnableTotpAsync(Apigen.Vikunja.Models.TotpPasscode totpPasscode);
 
   /// <summary>
   /// Enroll a user into totp
   /// Operation: POST /user/settings/totp/enroll
   /// </summary>
-  Task<TOTP> EnrollTotpAsync();
+  Task<Totp> EnrollTotpAsync();
 
   /// <summary>
   /// Totp QR Code
