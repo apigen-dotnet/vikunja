@@ -75,13 +75,13 @@ public interface ITaskClient
   /// Get one attachment.
   /// Operation: GET /tasks/{id}/attachments/{attachmentID}
   /// </summary>
-  Task<Stream> GetTaskAttachmentAsync(int id, int attachmentID, GetTaskAttachmentRequest? request = null);
+  Task<Stream> GetTaskAttachmentAsync(int id, int attachmentId, GetTaskAttachmentRequest? request = null);
 
   /// <summary>
   /// Delete an attachment
   /// Operation: DELETE /tasks/{id}/attachments/{attachmentID}
   /// </summary>
-  Task<Message> DeleteAsync(int id, int attachmentID);
+  Task<Message> DeleteAsync(int id, int attachmentId);
 
   /// <summary>
   /// Updates a task position
@@ -93,43 +93,43 @@ public interface ITaskClient
   /// Get all task comments
   /// Operation: GET /tasks/{taskID}/comments
   /// </summary>
-  Task<List<TaskComment>> GetAsync(int taskID);
+  Task<List<TaskComment>> GetAsync(int taskId);
 
   /// <summary>
   /// Create a new task comment
   /// Operation: PUT /tasks/{taskID}/comments
   /// </summary>
-  Task<TaskComment> CreateTaskCommentAsync(int taskID, Apigen.Vikunja.Models.TaskComment taskComment);
+  Task<TaskComment> CreateTaskCommentAsync(int taskId, Apigen.Vikunja.Models.TaskComment taskComment);
 
   /// <summary>
   /// Remove a task comment
   /// Operation: GET /tasks/{taskID}/comments/{commentID}
   /// </summary>
-  Task<TaskComment> GetAsync(int taskID, int commentID);
+  Task<TaskComment> GetAsync(int taskId, int commentId);
 
   /// <summary>
   /// Update an existing task comment
   /// Operation: POST /tasks/{taskID}/comments/{commentID}
   /// </summary>
-  Task<TaskComment> UpdateTaskCommentAsync(int taskID, int commentID);
+  Task<TaskComment> UpdateTaskCommentAsync(int taskId, int commentId);
 
   /// <summary>
   /// Remove a task comment
   /// Operation: DELETE /tasks/{taskID}/comments/{commentID}
   /// </summary>
-  Task<Message> DeleteTasksCommentsAsync(int taskID, int commentID);
+  Task<Message> DeleteTasksCommentsAsync(int taskId, int commentId);
 
   /// <summary>
   /// Create a new relation between two tasks
   /// Operation: PUT /tasks/{taskID}/relations
   /// </summary>
-  Task<TaskRelation> CreateTaskRelationAsync(int taskID, Apigen.Vikunja.Models.TaskRelation taskRelation);
+  Task<TaskRelation> CreateTaskRelationAsync(int taskId, Apigen.Vikunja.Models.TaskRelation taskRelation);
 
   /// <summary>
   /// Remove a task relation
   /// Operation: DELETE /tasks/{taskID}/relations/{relationKind}/{otherTaskID}
   /// </summary>
-  Task<Message> DeleteAsync(int taskID, string relationKind, int otherTaskID, Apigen.Vikunja.Models.TaskRelation taskRelation);
+  Task<Message> DeleteAsync(int taskId, string relationKind, int otherTaskId, Apigen.Vikunja.Models.TaskRelation taskRelation);
 
   /// <summary>
   /// Get all reactions for an entity

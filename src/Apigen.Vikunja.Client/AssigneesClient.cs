@@ -29,19 +29,19 @@ public class AssigneesClient
   /// Get all assignees for a task
   /// Operation: GET /tasks/{taskID}/assignees
   /// </summary>
-  public async Task<List<User>> ListAsync(int taskID, GetassigneesRequest? request = null)
+  public async Task<List<User>> ListAsync(int taskId, GetassigneesRequest? request = null)
   {
     Dictionary<string, object> pathParams = new()
     {
-      ["taskID"] = taskID
+      ["taskID"] = taskId
     };
     string url = "tasks/{taskID}/assignees".BuildUrl(pathParams, request);
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
-    HttpClientLog.RequestStarted(_logger, "GET", url);
+    HttpClientLog.LogDebugRequestStarted(_logger, "GET", url);
     HttpResponseMessage response = await _httpClient.GetAsync(url);
     long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
-    HttpClientLog.RequestCompleted(_logger, (int)response.StatusCode, "GET", url, durationMs);
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "GET", url, durationMs);
 
     string responseContent;
     try
@@ -52,11 +52,11 @@ public class AssigneesClient
     catch (HttpRequestException ex)
     {
       responseContent = await response.Content.ReadAsStringAsync();
-      HttpClientLog.RequestFailed(_logger, (int)response.StatusCode, "GET", url, responseContent, ex);
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "GET", url, responseContent, ex);
       throw;
     }
 
-    HttpClientLog.ResponseBody(_logger, url, responseContent);
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
     List<User>? result = JsonSerializer.Deserialize<List<User>>(responseContent, JsonConfig.Default);
     return result ?? new List<User>();
   }
@@ -66,22 +66,22 @@ public class AssigneesClient
   /// Add a new assignee to a task
   /// Operation: PUT /tasks/{taskID}/assignees
   /// </summary>
-  public async Task<TaskAssginee> AddAssigneeAsync(int taskID, Apigen.Vikunja.Models.TaskAssginee taskAssginee)
+  public async Task<TaskAssignee> AddAssigneeAsync(int taskId, Apigen.Vikunja.Models.TaskAssignee taskAssignee)
   {
     Dictionary<string, object> pathParams = new()
     {
-      ["taskID"] = taskID
+      ["taskID"] = taskId
     };
     string url = "tasks/{taskID}/assignees".BuildUrl(pathParams);
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
-    HttpClientLog.RequestStarted(_logger, "PUT", url);
-    string json = JsonSerializer.Serialize(taskAssginee, JsonConfig.Default);
-    HttpClientLog.RequestBody(_logger, "PUT", json);
+    HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
+    string json = JsonSerializer.Serialize(taskAssignee, JsonConfig.Default);
+    HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PutAsync(url, content);
     long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
-    HttpClientLog.RequestCompleted(_logger, (int)response.StatusCode, "PUT", url, durationMs);
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "PUT", url, durationMs);
 
     string responseContent;
     try
@@ -92,13 +92,13 @@ public class AssigneesClient
     catch (HttpRequestException ex)
     {
       responseContent = await response.Content.ReadAsStringAsync();
-      HttpClientLog.RequestFailed(_logger, (int)response.StatusCode, "PUT", url, responseContent, ex);
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "PUT", url, responseContent, ex);
       throw;
     }
 
-    HttpClientLog.ResponseBody(_logger, url, responseContent);
-    TaskAssginee? result = JsonSerializer.Deserialize<TaskAssginee>(responseContent, JsonConfig.Default);
-    return result ?? new TaskAssginee();
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    TaskAssignee? result = JsonSerializer.Deserialize<TaskAssignee>(responseContent, JsonConfig.Default);
+    return result ?? new TaskAssignee();
   }
 
 
@@ -106,22 +106,22 @@ public class AssigneesClient
   /// Add multiple new assignees to a task
   /// Operation: POST /tasks/{taskID}/assignees/bulk
   /// </summary>
-  public async Task<TaskAssginee> AddMultipleAssigneesAsync(int taskID, Apigen.Vikunja.Models.BulkAssignees bulkAssignees)
+  public async Task<TaskAssignee> AddMultipleAssigneesAsync(int taskId, Apigen.Vikunja.Models.BulkAssignees bulkAssignees)
   {
     Dictionary<string, object> pathParams = new()
     {
-      ["taskID"] = taskID
+      ["taskID"] = taskId
     };
     string url = "tasks/{taskID}/assignees/bulk".BuildUrl(pathParams);
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
-    HttpClientLog.RequestStarted(_logger, "POST", url);
+    HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
     string json = JsonSerializer.Serialize(bulkAssignees, JsonConfig.Default);
-    HttpClientLog.RequestBody(_logger, "POST", json);
+    HttpClientLog.LogTraceRequestBody(_logger, "POST", "application/json", json);
     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
     HttpResponseMessage response = await _httpClient.PostAsync(url, content);
     long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
-    HttpClientLog.RequestCompleted(_logger, (int)response.StatusCode, "POST", url, durationMs);
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "POST", url, durationMs);
 
     string responseContent;
     try
@@ -132,13 +132,13 @@ public class AssigneesClient
     catch (HttpRequestException ex)
     {
       responseContent = await response.Content.ReadAsStringAsync();
-      HttpClientLog.RequestFailed(_logger, (int)response.StatusCode, "POST", url, responseContent, ex);
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "POST", url, responseContent, ex);
       throw;
     }
 
-    HttpClientLog.ResponseBody(_logger, url, responseContent);
-    TaskAssginee? result = JsonSerializer.Deserialize<TaskAssginee>(responseContent, JsonConfig.Default);
-    return result ?? new TaskAssginee();
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    TaskAssignee? result = JsonSerializer.Deserialize<TaskAssignee>(responseContent, JsonConfig.Default);
+    return result ?? new TaskAssignee();
   }
 
 
@@ -146,20 +146,20 @@ public class AssigneesClient
   /// Delete an assignee
   /// Operation: DELETE /tasks/{taskID}/assignees/{userID}
   /// </summary>
-  public async Task<Message> DeleteAsync(int taskID, int userID)
+  public async Task<Message> DeleteAsync(int taskId, int userId)
   {
     Dictionary<string, object> pathParams = new()
     {
-      ["taskID"] = taskID,
-      ["userID"] = userID
+      ["taskID"] = taskId,
+      ["userID"] = userId
     };
     string url = "tasks/{taskID}/assignees/{userID}".BuildUrl(pathParams);
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
-    HttpClientLog.RequestStarted(_logger, "DELETE", url);
+    HttpClientLog.LogDebugRequestStarted(_logger, "DELETE", url);
     HttpResponseMessage response = await _httpClient.DeleteAsync(url);
     long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
-    HttpClientLog.RequestCompleted(_logger, (int)response.StatusCode, "DELETE", url, durationMs);
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "DELETE", url, durationMs);
 
     string responseContent;
     try
@@ -170,11 +170,11 @@ public class AssigneesClient
     catch (HttpRequestException ex)
     {
       responseContent = await response.Content.ReadAsStringAsync();
-      HttpClientLog.RequestFailed(_logger, (int)response.StatusCode, "DELETE", url, responseContent, ex);
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "DELETE", url, responseContent, ex);
       throw;
     }
 
-    HttpClientLog.ResponseBody(_logger, url, responseContent);
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
     Message? result = JsonSerializer.Deserialize<Message>(responseContent, JsonConfig.Default);
     return result ?? new Message();
   }

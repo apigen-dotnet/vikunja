@@ -51,7 +51,7 @@ public interface ITeamClient
   /// Toggle a team member&apos;s admin status
   /// Operation: POST /teams/{id}/members/{userID}/admin
   /// </summary>
-  Task<Message> ToggleTeamMemberAdminAsync(int id, int userID);
+  Task<Message> ToggleTeamMemberAdminAsync(int id, int userId);
 
   /// <summary>
   /// Remove a user from a team

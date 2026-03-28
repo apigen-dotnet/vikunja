@@ -27,13 +27,13 @@ public interface IWebhooksClient
   /// Change a webhook target&apos;s events.
   /// Operation: POST /projects/{id}/webhooks/{webhookID}
   /// </summary>
-  Task<Webhook> UpdateWebhookAsync(int id, int webhookID);
+  Task<Webhook> UpdateWebhookAsync(int id, int webhookId);
 
   /// <summary>
   /// Deletes an existing webhook target
   /// Operation: DELETE /projects/{id}/webhooks/{webhookID}
   /// </summary>
-  Task<Message> DeleteAsync(int id, int webhookID);
+  Task<Message> DeleteAsync(int id, int webhookId);
 
   /// <summary>
   /// Get all possible webhook events

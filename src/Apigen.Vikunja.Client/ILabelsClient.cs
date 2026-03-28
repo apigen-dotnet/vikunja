@@ -45,7 +45,7 @@ public interface ILabelsClient
   /// Update all labels on a task.
   /// Operation: POST /tasks/{taskID}/labels/bulk
   /// </summary>
-  Task<LabelTaskBulk> BulkAsync(int taskID, Apigen.Vikunja.Models.LabelTaskBulk labelTaskBulk);
+  Task<LabelTaskBulk> BulkAsync(int taskId, Apigen.Vikunja.Models.LabelTaskBulk labelTaskBulk);
 
   /// <summary>
   /// Get all labels on a task

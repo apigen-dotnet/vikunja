@@ -27,12 +27,12 @@ public interface ISubscriptionsClient
   /// Subscribes the current user to an entity.
   /// Operation: PUT /subscriptions/{entity}/{entityID}
   /// </summary>
-  Task<Subscription> SubscribeAsync(string entity, string entityID);
+  Task<Subscription> SubscribeAsync(string entity, string entityId);
 
   /// <summary>
   /// Unsubscribe the current user from an entity.
   /// Operation: DELETE /subscriptions/{entity}/{entityID}
   /// </summary>
-  Task<Subscription> DeleteAsync(string entity, string entityID);
+  Task<Subscription> DeleteAsync(string entity, string entityId);
 
 }

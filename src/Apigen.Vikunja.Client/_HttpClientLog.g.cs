@@ -13,51 +13,51 @@ internal static partial class HttpClientLog
 {
   [LoggerMessage(EventId = 1001, Level = LogLevel.Debug,
     Message = "Making {Method} request to {Url}")]
-  private static partial void RequestStartedCore(ILogger logger, string method, string url);
+  private static partial void LogDebugRequestStartedCore(ILogger logger, string method, string url);
 
-  public static void RequestStarted(ILogger? logger, string method, string url)
+  public static void LogDebugRequestStarted(ILogger? logger, string method, string url)
   {
     if (logger != null)
-      RequestStartedCore(logger, method, url);
+      LogDebugRequestStartedCore(logger, method, url);
   }
 
   [LoggerMessage(EventId = 1002, Level = LogLevel.Debug,
     Message = "Received {StatusCode} response from {Method} {Url} in {DurationMs}ms")]
-  private static partial void RequestCompletedCore(ILogger logger, int statusCode, string method, string url, long durationMs);
+  private static partial void LogDebugRequestCompletedCore(ILogger logger, int statusCode, string method, string url, long durationMs);
 
-  public static void RequestCompleted(ILogger? logger, int statusCode, string method, string url, long durationMs)
+  public static void LogDebugRequestCompleted(ILogger? logger, int statusCode, string method, string url, long durationMs)
   {
     if (logger != null)
-      RequestCompletedCore(logger, statusCode, method, url, durationMs);
+      LogDebugRequestCompletedCore(logger, statusCode, method, url, durationMs);
   }
 
   [LoggerMessage(EventId = 3001, Level = LogLevel.Error,
     Message = "HTTP {StatusCode} error for {Method} {Url}. Response: {ResponseContent}")]
-  private static partial void RequestFailedCore(ILogger logger, int statusCode, string method, string url, string responseContent, Exception? exception);
+  private static partial void LogErrorRequestFailedCore(ILogger logger, int statusCode, string method, string url, string responseContent, Exception? exception);
 
-  public static void RequestFailed(ILogger? logger, int statusCode, string method, string url, string responseContent, Exception? exception)
+  public static void LogErrorRequestFailed(ILogger? logger, int statusCode, string method, string url, string responseContent, Exception? exception)
   {
     if (logger != null)
-      RequestFailedCore(logger, statusCode, method, url, responseContent, exception);
+      LogErrorRequestFailedCore(logger, statusCode, method, url, responseContent, exception);
   }
 
   [LoggerMessage(EventId = 1003, Level = LogLevel.Trace,
-    Message = "{Method} request body: {Body}")]
-  private static partial void RequestBodyCore(ILogger logger, string method, string body);
+    Message = "{Method} request body [{ContentType}]: {Body}")]
+  private static partial void LogTraceRequestBodyCore(ILogger logger, string method, string contentType, string body);
 
-  public static void RequestBody(ILogger? logger, string method, string body)
+  public static void LogTraceRequestBody(ILogger? logger, string method, string contentType, string body)
   {
     if (logger != null)
-      RequestBodyCore(logger, method, body);
+      LogTraceRequestBodyCore(logger, method, contentType, body);
   }
 
   [LoggerMessage(EventId = 2003, Level = LogLevel.Trace,
     Message = "Response from {Url}: {Body}")]
-  private static partial void ResponseBodyCore(ILogger logger, string url, string body);
+  private static partial void LogTraceResponseBodyCore(ILogger logger, string url, string body);
 
-  public static void ResponseBody(ILogger? logger, string url, string body)
+  public static void LogTraceResponseBody(ILogger? logger, string url, string body)
   {
     if (logger != null)
-      ResponseBodyCore(logger, url, body);
+      LogTraceResponseBodyCore(logger, url, body);
   }
 }

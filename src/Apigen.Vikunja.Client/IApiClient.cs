@@ -33,6 +33,6 @@ public interface IApiClient
   /// Deletes an existing api token
   /// Operation: DELETE /tokens/{tokenID}
   /// </summary>
-  Task<Message> DeleteAsync(int tokenID);
+  Task<Message> DeleteAsync(int tokenId);
 
 }

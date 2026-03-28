@@ -45,25 +45,25 @@ public interface ISharingClient
   /// Update a team &lt;-&gt; project relation
   /// Operation: POST /projects/{projectID}/teams/{teamID}
   /// </summary>
-  Task<TeamProject> UpdateProjectTeamAsync(int projectID, int teamID, Apigen.Vikunja.Models.TeamProject teamProject);
+  Task<TeamProject> UpdateProjectTeamAsync(int projectId, int teamId, Apigen.Vikunja.Models.TeamProject teamProject);
 
   /// <summary>
   /// Delete a team from a project
   /// Operation: DELETE /projects/{projectID}/teams/{teamID}
   /// </summary>
-  Task<Message> DeleteAsync(int projectID, int teamID);
+  Task<Message> DeleteAsync(int projectId, int teamId);
 
   /// <summary>
   /// Update a user &lt;-&gt; project relation
   /// Operation: POST /projects/{projectID}/users/{userID}
   /// </summary>
-  Task<ProjectUser> UpdateProjectUserAsync(int projectID, int userID, Apigen.Vikunja.Models.ProjectUser projectUser);
+  Task<ProjectUser> UpdateProjectUserAsync(int projectId, int userId, Apigen.Vikunja.Models.ProjectUser projectUser);
 
   /// <summary>
   /// Delete a user from a project
   /// Operation: DELETE /projects/{projectID}/users/{userID}
   /// </summary>
-  Task<Message> DeleteProjectsUsersAsync(int projectID, int userID);
+  Task<Message> DeleteProjectsUsersAsync(int projectId, int userId);
 
   /// <summary>
   /// Get all link shares for a project

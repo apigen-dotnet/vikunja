@@ -682,6 +682,11 @@ pattern = "^code_vikunja_io_api_pkg_modules_auth_openid\\.(.+)$"
 new_name = "OpenId$1"
 reason = "Simplify long package path to OpenId prefix"
 
+[[type_name_overrides]]
+original_name = "TaskAssginee"
+new_name = "TaskAssignee"
+reason = "Fix upstream typo: Assginee -> Assignee"
+
 # Code formatting preferences
 [formatting]
 use_spaces = true

@@ -105,19 +105,19 @@ public interface IProjectClient
   /// Duplicate an existing project
   /// Operation: PUT /projects/{projectID}/duplicate
   /// </summary>
-  Task<ProjectDuplicate> DuplicateProjectAsync(int projectID, Apigen.Vikunja.Models.ProjectDuplicate projectDuplicate);
+  Task<ProjectDuplicate> DuplicateProjectAsync(int projectId, Apigen.Vikunja.Models.ProjectDuplicate projectDuplicate);
 
   /// <summary>
   /// Update an existing bucket
   /// Operation: POST /projects/{projectID}/views/{view}/buckets/{bucketID}
   /// </summary>
-  Task<Bucket> UpdateBucketAsync(int projectID, int bucketID, int view, Apigen.Vikunja.Models.Bucket bucket);
+  Task<Bucket> UpdateBucketAsync(int projectId, int bucketId, int view, Apigen.Vikunja.Models.Bucket bucket);
 
   /// <summary>
   /// Deletes an existing bucket
   /// Operation: DELETE /projects/{projectID}/views/{view}/buckets/{bucketID}
   /// </summary>
-  Task<Message> DeleteAsync(int projectID, int bucketID, int view);
+  Task<Message> DeleteAsync(int projectId, int bucketId, int view);
 
   /// <summary>
   /// Get all project views for a project

@@ -1,3 +1,5 @@
 enabled = true
+
+[[sources]]
 url = "https://try.vikunja.io/api/v1/docs.json"
 target = "specs/vikunja.json"
