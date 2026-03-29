@@ -29,7 +29,7 @@ public class AuthClient
   /// Authenticate a user with OpenID Connect
   /// Operation: POST /auth/openid/{provider}/callback
   /// </summary>
-  public async Task<AuthToken> GetTokenOpenidAsync(int provider, Apigen.Vikunja.Models.Callback callback)
+  public async Task<AuthToken> GetTokenOpenIdAsync(int provider, Apigen.Vikunja.Models.Callback callback)
   {
     Dictionary<string, object> pathParams = new()
     {

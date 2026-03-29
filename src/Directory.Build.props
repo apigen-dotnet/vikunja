@@ -14,7 +14,7 @@
 
   <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Apigen.Vikunja.Client'">
     <PackageId>Apigen.Vikunja.Client</PackageId>
-    <Version>0.24.2</Version>
+    <Version>0.24.3</Version>
     <Description>Generated C# client for the Vikunja task management API</Description>
     <PackageTags>vikunja;api;client;openapi;apigen;tasks;todo</PackageTags>
     <PackageReadmeFile>NUGET.md</PackageReadmeFile>

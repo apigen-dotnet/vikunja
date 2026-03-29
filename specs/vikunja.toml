@@ -57,6 +57,7 @@ include_base_classes = true
 # Naming convention overrides
 [naming]
 
+
 # Vikunja uses non-standard HTTP methods:
 # - PUT is typically used for CREATE/ADD operations
 # - POST is typically used for UPDATE operations
@@ -425,9 +426,9 @@ new_operation_id = "Register"
 description = "POST /register - Register"
 
 [[naming.path_based_overrides]]
-operation_id = "Postauth"
+operation_id = "get-token-openid"
 path_filter = ".*/openid/.*/callback$"
-new_operation_id = "OpenIdCallback"
+new_operation_id = "GetTokenOpenId"
 description = "POST /auth/openid/{provider}/callback - Authenticate a user with OpenID Connect"
 
 # === API TOKENS ===

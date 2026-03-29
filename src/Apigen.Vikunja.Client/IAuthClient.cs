@@ -15,7 +15,7 @@ public interface IAuthClient
   /// Authenticate a user with OpenID Connect
   /// Operation: POST /auth/openid/{provider}/callback
   /// </summary>
-  Task<AuthToken> GetTokenOpenidAsync(int provider, Apigen.Vikunja.Models.Callback callback);
+  Task<AuthToken> GetTokenOpenIdAsync(int provider, Apigen.Vikunja.Models.Callback callback);
 
   /// <summary>
   /// Login
