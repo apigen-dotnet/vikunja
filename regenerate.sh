@@ -10,6 +10,14 @@ if [ ! -d "$GENERATOR_DIR" ]; then
   exit 1
 fi
 
+# Auto-discover the TOML config in specs/
+CONFIG=$(ls "$SCRIPT_DIR"/specs/*.toml 2>/dev/null | head -1)
+if [ -z "$CONFIG" ]; then
+  echo "Error: No .toml config found in $SCRIPT_DIR/specs/"
+  exit 1
+fi
+
 echo "Regenerating from specs..."
-dotnet run --project "$GENERATOR_DIR/src/Apigen.Generator/Apigen.Generator.csproj" -- --config "$SCRIPT_DIR/specs/vikunja.toml"
+cd "$SCRIPT_DIR"
+dotnet run --project "$GENERATOR_DIR/src/Apigen.Generator/Apigen.Generator.csproj" -- --config "$CONFIG" "$@"
 echo "Done!"

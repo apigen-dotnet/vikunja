@@ -26,8 +26,14 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
+      - name: Find config
+        id: config
+        run: |
+          CONFIG=$(ls specs/*.toml | head -1)
+          echo "file=$CONFIG" >> "$GITHUB_OUTPUT"
+
       - name: Regenerate
-        run: dotnet run --project .generator/src/Apigen.Generator/Apigen.Generator.csproj -- --config specs/vikunja.toml
+        run: dotnet run --project .generator/src/Apigen.Generator/Apigen.Generator.csproj -- --config "${{ steps.config.outputs.file }}"
 
       - name: Cleanup generator
         run: rm -rf .generator
