@@ -154,7 +154,7 @@ public class VikunjaApiClient
   }
 
   /// <summary>
-  /// Create client with API key authentication
+  /// Create client with Authorization authentication
   /// </summary>
   public static VikunjaApiClient WithApiKey(string apiKey, string baseUrl = "https://app.vikunja.cloud/api/v1", ILogger? logger = null)
   {
