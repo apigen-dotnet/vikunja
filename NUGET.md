@@ -28,6 +28,10 @@ var client = VikunjaApiClient.WithBasicAuth(
 var client = new VikunjaApiClient(httpClient);
 ```
 
+## Versioning
+
+Package versions follow the upstream application version: the **major.minor** matches the application API version, and the **patch** is our client revision. For example, package `2.6.7` was built against API version `2.6.x` and is our 7th client release for that API version.
+
 ## License
 
 MIT
