@@ -897,39 +897,6 @@ public class UserClient
 
 
   /// <summary>
-  /// Renew user token
-  /// Operation: POST /user/token
-  /// </summary>
-  public async Task<AuthToken> PostAsync()
-  {
-    string url = "user/token";
-
-    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
-    HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    HttpResponseMessage response = await _httpClient.PostAsync(url, null);
-    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
-    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "POST", url, durationMs);
-
-    string responseContent;
-    try
-    {
-      response.EnsureSuccessStatusCode();
-      responseContent = await response.Content.ReadAsStringAsync();
-    }
-    catch (HttpRequestException ex)
-    {
-      responseContent = await response.Content.ReadAsStringAsync();
-      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "POST", url, responseContent, ex);
-      throw;
-    }
-
-    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
-    AuthToken? result = JsonSerializer.Deserialize<AuthToken>(responseContent, JsonConfig.Default);
-    return result ?? new AuthToken();
-  }
-
-
-  /// <summary>
   /// Get users
   /// Operation: GET /users
   /// </summary>

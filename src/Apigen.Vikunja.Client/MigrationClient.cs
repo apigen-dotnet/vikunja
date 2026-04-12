@@ -26,6 +26,138 @@ public class MigrationClient
   }
 
   /// <summary>
+  /// Detect CSV structure
+  /// Operation: PUT /migration/csv/detect
+  /// </summary>
+  public async Task<CsvDetectionResult> DetectCsvStructureAsync()
+  {
+    string url = "migration/csv/detect";
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
+    HttpResponseMessage response = await _httpClient.PutAsync(url, null);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "PUT", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "PUT", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    CsvDetectionResult? result = JsonSerializer.Deserialize<CsvDetectionResult>(responseContent, JsonConfig.Default);
+    return result ?? new CsvDetectionResult();
+  }
+
+
+  /// <summary>
+  /// Import CSV file
+  /// Operation: PUT /migration/csv/migrate
+  /// </summary>
+  public async Task<Message> MigrateFromCsvAsync()
+  {
+    string url = "migration/csv/migrate";
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
+    HttpResponseMessage response = await _httpClient.PutAsync(url, null);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "PUT", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "PUT", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    Message? result = JsonSerializer.Deserialize<Message>(responseContent, JsonConfig.Default);
+    return result ?? new Message();
+  }
+
+
+  /// <summary>
+  /// Preview CSV import
+  /// Operation: PUT /migration/csv/preview
+  /// </summary>
+  public async Task<CsvPreviewResult> PreviewCsvImportAsync()
+  {
+    string url = "migration/csv/preview";
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
+    HttpResponseMessage response = await _httpClient.PutAsync(url, null);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "PUT", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "PUT", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    CsvPreviewResult? result = JsonSerializer.Deserialize<CsvPreviewResult>(responseContent, JsonConfig.Default);
+    return result ?? new CsvPreviewResult();
+  }
+
+
+  /// <summary>
+  /// Get CSV migration status
+  /// Operation: GET /migration/csv/status
+  /// </summary>
+  public async Task<Status> GetCsvMigrationStatusAsync()
+  {
+    string url = "migration/csv/status";
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "GET", url);
+    HttpResponseMessage response = await _httpClient.GetAsync(url);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "GET", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "GET", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    Status? result = JsonSerializer.Deserialize<Status>(responseContent, JsonConfig.Default);
+    return result ?? new Status();
+  }
+
+
+  /// <summary>
   /// Get the auth url from Microsoft Todo
   /// Operation: GET /migration/microsoft-todo/auth
   /// </summary>
@@ -129,17 +261,17 @@ public class MigrationClient
 
   /// <summary>
   /// Import all projects, tasks etc. from a TickTick backup export
-  /// Operation: POST /migration/ticktick/migrate
+  /// Operation: PUT /migration/ticktick/migrate
   /// </summary>
-  public async Task<Message> MigrateFromTickTickAsync()
+  public async Task<Message> PutAsync()
   {
     string url = "migration/ticktick/migrate";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
-    HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
-    HttpResponseMessage response = await _httpClient.PostAsync(url, null);
+    HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
+    HttpResponseMessage response = await _httpClient.PutAsync(url, null);
     long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
-    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "POST", url, durationMs);
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "PUT", url, durationMs);
 
     string responseContent;
     try
@@ -150,7 +282,7 @@ public class MigrationClient
     catch (HttpRequestException ex)
     {
       responseContent = await response.Content.ReadAsStringAsync();
-      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "POST", url, responseContent, ex);
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "PUT", url, responseContent, ex);
       throw;
     }
 
@@ -437,6 +569,72 @@ public class MigrationClient
   public async Task<Status> GetMigrationVikunjaFileStatusAsync()
   {
     string url = "migration/vikunja-file/status";
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "GET", url);
+    HttpResponseMessage response = await _httpClient.GetAsync(url);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "GET", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "GET", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    Status? result = JsonSerializer.Deserialize<Status>(responseContent, JsonConfig.Default);
+    return result ?? new Status();
+  }
+
+
+  /// <summary>
+  /// Import all projects, tasks etc. from a WeKan board export
+  /// Operation: PUT /migration/wekan/migrate
+  /// </summary>
+  public async Task<Message> MigrateFromWekanAsync()
+  {
+    string url = "migration/wekan/migrate";
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
+    HttpResponseMessage response = await _httpClient.PutAsync(url, null);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "PUT", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "PUT", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    Message? result = JsonSerializer.Deserialize<Message>(responseContent, JsonConfig.Default);
+    return result ?? new Message();
+  }
+
+
+  /// <summary>
+  /// Get migration status
+  /// Operation: GET /migration/wekan/status
+  /// </summary>
+  public async Task<Status> GetWekanMigrationStatusAsync()
+  {
+    string url = "migration/wekan/status";
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "GET", url);

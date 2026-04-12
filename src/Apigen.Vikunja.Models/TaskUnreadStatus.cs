@@ -21,22 +21,14 @@ using System.Text.Json.Serialization;
 namespace Apigen.Vikunja.Models;
 
 /// <summary>
-/// user.PasswordReset from OpenAPI schema.
-/// Schema path: #/components/schemas/user.PasswordReset
+/// models.TaskUnreadStatus from OpenAPI schema.
+/// Schema path: #/components/schemas/models.TaskUnreadStatus
 /// </summary>
-public class PasswordReset
+public class TaskUnreadStatus
 {
-  /// <summary>
-  /// The new password for this user.
-  /// </summary>
-  [MinLength(8)]
-  [MaxLength(72)]
-  [System.Text.Json.Serialization.JsonPropertyName("new_password")]
-  public string? NewPassword { get; set; }
+  [System.Text.Json.Serialization.JsonPropertyName("taskID")]
+  public int? TaskId { get; set; }
 
-  /// <summary>
-  /// The previously issued reset token.
-  /// </summary>
-  [System.Text.Json.Serialization.JsonPropertyName("token")]
-  public string? Token { get; set; }
+  [System.Text.Json.Serialization.JsonPropertyName("userID")]
+  public int? UserId { get; set; }
 }

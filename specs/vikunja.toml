@@ -66,9 +66,15 @@ include_base_classes = true
 # All overrides below match the actual intent from OpenAPI summaries
 [[naming.path_based_overrides]]
 operation_id = "Gettask"
-path_filter = "^/tasks/all$"
+path_filter = "^/tasks$"
 new_operation_id = "GetAllTasks"
-description = "GET /tasks/all - Get all tasks"
+description = "GET /tasks - Get tasks"
+
+[[naming.path_based_overrides]]
+operation_id = "Gettask"
+path_filter = "^/projects/.*/tasks/by-index/.*$"
+new_operation_id = "GetTaskByIndex"
+description = "GET /projects/{project}/tasks/by-index/{index} - Get one task by its per-project index"
 
 [[naming.path_based_overrides]]
 operation_id = "Gettask"
@@ -101,6 +107,18 @@ new_operation_id = "CreateTask"
 description = "PUT /projects/{id}/tasks - Create a task"
 
 [[naming.path_based_overrides]]
+operation_id = "Gettask"
+path_filter = "^/tasks/.*/comments/[^/]+$"
+new_operation_id = "GetTaskComment"
+description = "GET /tasks/{taskID}/comments/{commentID} - Get a task comment"
+
+[[naming.path_based_overrides]]
+operation_id = "Gettask"
+path_filter = "^/tasks/.*/comments$"
+new_operation_id = "GetTaskComments"
+description = "GET /tasks/{taskID}/comments - Get all task comments"
+
+[[naming.path_based_overrides]]
 operation_id = "Puttask"
 path_filter = ".*/tasks/.*/attachments$"
 new_operation_id = "UploadTaskAttachment"
@@ -117,6 +135,18 @@ operation_id = "Puttask"
 path_filter = ".*/tasks/.*/relations$"
 new_operation_id = "CreateTaskRelation"
 description = "PUT /tasks/{taskID}/relations - Create a new relation between two tasks"
+
+[[naming.path_based_overrides]]
+operation_id = "Puttask"
+path_filter = ".*/tasks/.*/duplicate$"
+new_operation_id = "DuplicateTask"
+description = "PUT /tasks/{taskID}/duplicate - Duplicate a task"
+
+[[naming.path_based_overrides]]
+operation_id = "Posttask"
+path_filter = ".*/tasks/.*/read$"
+new_operation_id = "MarkTaskAsRead"
+description = "POST /tasks/{projecttask}/read - Mark a task as read"
 
 [[naming.path_based_overrides]]
 operation_id = "Puttask"
@@ -275,15 +305,45 @@ description = "POST /projects/{projectID}/views/{view}/buckets/{bucketID} - Upda
 # === WEBHOOKS ===
 [[naming.path_based_overrides]]
 operation_id = "Putwebhooks"
-path_filter = ".*/webhooks$"
-new_operation_id = "CreateWebhook"
-description = "PUT /projects/{id}/webhooks - Create a webhook target"
+path_filter = "^/projects/.*/webhooks$"
+new_operation_id = "CreateProjectWebhook"
+description = "PUT /projects/{id}/webhooks - Create a project webhook target"
 
 [[naming.path_based_overrides]]
 operation_id = "Postwebhooks"
-path_filter = ".*/webhooks/[^/]+$"
-new_operation_id = "UpdateWebhook"
-description = "POST /projects/{id}/webhooks/{webhookID} - Change a webhook target's events"
+path_filter = "^/projects/.*/webhooks/[^/]+$"
+new_operation_id = "UpdateProjectWebhook"
+description = "POST /projects/{id}/webhooks/{webhookID} - Change a project webhook target's events"
+
+[[naming.path_based_overrides]]
+operation_id = "Putwebhooks"
+path_filter = "^/user/settings/webhooks$"
+new_operation_id = "CreateUserWebhook"
+description = "PUT /user/settings/webhooks - Create a user-level webhook target"
+
+[[naming.path_based_overrides]]
+operation_id = "Postwebhooks"
+path_filter = "^/user/settings/webhooks/[^/]+$"
+new_operation_id = "UpdateUserWebhook"
+description = "POST /user/settings/webhooks/{id} - Update a user-level webhook target"
+
+[[naming.path_based_overrides]]
+operation_id = "Getwebhooks"
+path_filter = "^/user/settings/webhooks/events$"
+new_operation_id = "GetUserWebhookEvents"
+description = "GET /user/settings/webhooks/events - Get available user-directed webhook events"
+
+[[naming.path_based_overrides]]
+operation_id = "Getwebhooks"
+path_filter = "^/user/settings/webhooks$"
+new_operation_id = "GetUserWebhooks"
+description = "GET /user/settings/webhooks - Get all user-level webhook targets"
+
+[[naming.path_based_overrides]]
+operation_id = "Getwebhooks"
+path_filter = "^/webhooks/events$"
+new_operation_id = "GetWebhookEvents"
+description = "GET /webhooks/events - Get all possible webhook events"
 
 # === TEAMS ===
 [[naming.path_based_overrides]]
@@ -578,6 +638,64 @@ path_filter = ".*/vikunja-file/migrate$"
 new_operation_id = "ImportFromVikunjaExport"
 description = "POST /migration/vikunja-file/migrate - Import from Vikunja data export"
 
+# === CSV MIGRATION ===
+[[naming.path_based_overrides]]
+operation_id = "Putmigration"
+path_filter = ".*/csv/detect$"
+new_operation_id = "DetectCsvStructure"
+description = "PUT /migration/csv/detect - Detect CSV structure"
+
+[[naming.path_based_overrides]]
+operation_id = "Putmigration"
+path_filter = ".*/csv/preview$"
+new_operation_id = "PreviewCsvImport"
+description = "PUT /migration/csv/preview - Preview CSV import"
+
+[[naming.path_based_overrides]]
+operation_id = "Putmigration"
+path_filter = ".*/csv/migrate$"
+new_operation_id = "MigrateFromCsv"
+description = "PUT /migration/csv/migrate - Import CSV file"
+
+[[naming.path_based_overrides]]
+operation_id = "Getmigration"
+path_filter = ".*/csv/status$"
+new_operation_id = "GetCsvMigrationStatus"
+description = "GET /migration/csv/status - Get CSV migration status"
+
+# === WEKAN MIGRATION ===
+[[naming.path_based_overrides]]
+operation_id = "Putmigration"
+path_filter = ".*/wekan/migrate$"
+new_operation_id = "MigrateFromWekan"
+description = "PUT /migration/wekan/migrate - Import from WeKan board export"
+
+[[naming.path_based_overrides]]
+operation_id = "Getmigration"
+path_filter = ".*/wekan/status$"
+new_operation_id = "GetWekanMigrationStatus"
+description = "GET /migration/wekan/status - Get WeKan migration status"
+
+# === AUTH (new) ===
+[[naming.path_based_overrides]]
+operation_id = "Postauth"
+path_filter = "^/user/logout$"
+new_operation_id = "Logout"
+description = "POST /user/logout - Logout"
+
+[[naming.path_based_overrides]]
+operation_id = "Postauth"
+path_filter = "^/user/token/refresh$"
+new_operation_id = "RefreshToken"
+description = "POST /user/token/refresh - Refresh user token"
+
+# === TESTING ===
+[[naming.path_based_overrides]]
+operation_id = "Deletetesting"
+path_filter = "^/test/all$"
+new_operation_id = "TruncateAllTables"
+description = "DELETE /test/all - Truncate all tables (testing only)"
+
 # Type name overrides - comprehensive prefix transformation strategy
 # Handle collisions first (most specific patterns first)
 
@@ -647,6 +765,11 @@ reason = "Remove auth. prefix for non-collision schemas"
 pattern = "^background\\.(.+)$"
 new_name = "$1"
 reason = "Remove background. prefix"
+
+[[type_name_overrides]]
+pattern = "^csv\\.(.+)$"
+new_name = "Csv$1"
+reason = "Replace csv. prefix with Csv to keep context (CSV migration types)"
 
 [[type_name_overrides]]
 pattern = "^files\\.(.+)$"

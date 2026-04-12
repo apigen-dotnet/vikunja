@@ -12,6 +12,30 @@ namespace Apigen.Vikunja.Client;
 public interface IMigrationClient
 {
   /// <summary>
+  /// Detect CSV structure
+  /// Operation: PUT /migration/csv/detect
+  /// </summary>
+  Task<CsvDetectionResult> DetectCsvStructureAsync();
+
+  /// <summary>
+  /// Import CSV file
+  /// Operation: PUT /migration/csv/migrate
+  /// </summary>
+  Task<Message> MigrateFromCsvAsync();
+
+  /// <summary>
+  /// Preview CSV import
+  /// Operation: PUT /migration/csv/preview
+  /// </summary>
+  Task<CsvPreviewResult> PreviewCsvImportAsync();
+
+  /// <summary>
+  /// Get CSV migration status
+  /// Operation: GET /migration/csv/status
+  /// </summary>
+  Task<Status> GetCsvMigrationStatusAsync();
+
+  /// <summary>
   /// Get the auth url from Microsoft Todo
   /// Operation: GET /migration/microsoft-todo/auth
   /// </summary>
@@ -31,9 +55,9 @@ public interface IMigrationClient
 
   /// <summary>
   /// Import all projects, tasks etc. from a TickTick backup export
-  /// Operation: POST /migration/ticktick/migrate
+  /// Operation: PUT /migration/ticktick/migrate
   /// </summary>
-  Task<Message> MigrateFromTickTickAsync();
+  Task<Message> PutAsync();
 
   /// <summary>
   /// Get migration status
@@ -88,5 +112,17 @@ public interface IMigrationClient
   /// Operation: GET /migration/vikunja-file/status
   /// </summary>
   Task<Status> GetMigrationVikunjaFileStatusAsync();
+
+  /// <summary>
+  /// Import all projects, tasks etc. from a WeKan board export
+  /// Operation: PUT /migration/wekan/migrate
+  /// </summary>
+  Task<Message> MigrateFromWekanAsync();
+
+  /// <summary>
+  /// Get migration status
+  /// Operation: GET /migration/wekan/status
+  /// </summary>
+  Task<Status> GetWekanMigrationStatusAsync();
 
 }

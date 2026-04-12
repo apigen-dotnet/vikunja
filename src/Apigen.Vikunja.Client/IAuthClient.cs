@@ -29,4 +29,22 @@ public interface IAuthClient
   /// </summary>
   Task<User> RegisterAsync(Apigen.Vikunja.Models.UserRegister userRegister);
 
+  /// <summary>
+  /// Logout
+  /// Operation: POST /user/logout
+  /// </summary>
+  Task<Message> LogoutAsync();
+
+  /// <summary>
+  /// Renew link share token
+  /// Operation: POST /user/token
+  /// </summary>
+  Task<AuthToken> PostAsync();
+
+  /// <summary>
+  /// Refresh user token
+  /// Operation: POST /user/token/refresh
+  /// </summary>
+  Task<AuthToken> RefreshTokenAsync();
+
 }

@@ -147,7 +147,7 @@ public class VikunjaApiClient
   /// <summary>
   /// Create client with Basic Authentication
   /// </summary>
-  public static VikunjaApiClient WithBasicAuth(string username, string password, string baseUrl = "https://app.vikunja.cloud/api/v1", ILogger? logger = null)
+  public static VikunjaApiClient WithBasicAuth(string username, string password, string baseUrl = "/api/v1", ILogger? logger = null)
   {
     HttpClient httpClient = CreateBasicAuthHttpClient(username, password, baseUrl);
     return new VikunjaApiClient(httpClient, true, logger);
@@ -156,7 +156,7 @@ public class VikunjaApiClient
   /// <summary>
   /// Create client with API key authentication
   /// </summary>
-  public static VikunjaApiClient WithApiKey(string apiKey, string baseUrl = "https://app.vikunja.cloud/api/v1", ILogger? logger = null)
+  public static VikunjaApiClient WithApiKey(string apiKey, string baseUrl = "/api/v1", ILogger? logger = null)
   {
     HttpClient httpClient = CreateTokenAuthHttpClient(apiKey, baseUrl, "Authorization", false);
     return new VikunjaApiClient(httpClient, true, logger);

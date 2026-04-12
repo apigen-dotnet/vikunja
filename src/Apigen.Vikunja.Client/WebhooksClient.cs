@@ -66,7 +66,7 @@ public class WebhooksClient
   /// Create a webhook target
   /// Operation: PUT /projects/{id}/webhooks
   /// </summary>
-  public async Task<Webhook> CreateWebhookAsync(int id, Apigen.Vikunja.Models.Webhook webhook)
+  public async Task<Webhook> CreateProjectWebhookAsync(int id, Apigen.Vikunja.Models.Webhook webhook)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -106,7 +106,7 @@ public class WebhooksClient
   /// Change a webhook target&apos;s events.
   /// Operation: POST /projects/{id}/webhooks/{webhookID}
   /// </summary>
-  public async Task<Webhook> UpdateWebhookAsync(int id, int webhookId)
+  public async Task<Webhook> UpdateProjectWebhookAsync(int id, int webhookId)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -179,10 +179,186 @@ public class WebhooksClient
 
 
   /// <summary>
+  /// Get all user-level webhook targets
+  /// Operation: GET /user/settings/webhooks
+  /// </summary>
+  public async Task<List<Webhook>> GetUserWebhooksAsync()
+  {
+    string url = "user/settings/webhooks";
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "GET", url);
+    HttpResponseMessage response = await _httpClient.GetAsync(url);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "GET", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "GET", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    List<Webhook>? result = JsonSerializer.Deserialize<List<Webhook>>(responseContent, JsonConfig.Default);
+    return result ?? new List<Webhook>();
+  }
+
+
+  /// <summary>
+  /// Create a user-level webhook target
+  /// Operation: PUT /user/settings/webhooks
+  /// </summary>
+  public async Task<Webhook> CreateUserWebhookAsync(Apigen.Vikunja.Models.Webhook webhook)
+  {
+    string url = "user/settings/webhooks";
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
+    string json = JsonSerializer.Serialize(webhook, JsonConfig.Default);
+    HttpClientLog.LogTraceRequestBody(_logger, "PUT", "application/json", json);
+    StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+    HttpResponseMessage response = await _httpClient.PutAsync(url, content);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "PUT", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "PUT", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    Webhook? result = JsonSerializer.Deserialize<Webhook>(responseContent, JsonConfig.Default);
+    return result ?? new Webhook();
+  }
+
+
+  /// <summary>
+  /// Get available user-directed webhook events
+  /// Operation: GET /user/settings/webhooks/events
+  /// </summary>
+  public async Task<JsonElement> GetUserWebhookEventsAsync()
+  {
+    string url = "user/settings/webhooks/events";
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "GET", url);
+    HttpResponseMessage response = await _httpClient.GetAsync(url);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "GET", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "GET", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    JsonElement result = JsonSerializer.Deserialize<JsonElement>(responseContent, JsonConfig.Default);
+    return result;
+  }
+
+
+  /// <summary>
+  /// Update a user-level webhook target
+  /// Operation: POST /user/settings/webhooks/{id}
+  /// </summary>
+  public async Task<Webhook> UpdateUserWebhookAsync(int id)
+  {
+    Dictionary<string, object> pathParams = new()
+    {
+      ["id"] = id
+    };
+    string url = "user/settings/webhooks/{id}".BuildUrl(pathParams);
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
+    HttpResponseMessage response = await _httpClient.PostAsync(url, null);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "POST", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "POST", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    Webhook? result = JsonSerializer.Deserialize<Webhook>(responseContent, JsonConfig.Default);
+    return result ?? new Webhook();
+  }
+
+
+  /// <summary>
+  /// Delete a user-level webhook target
+  /// Operation: DELETE /user/settings/webhooks/{id}
+  /// </summary>
+  public async Task<Message> DeleteAsync(int id)
+  {
+    Dictionary<string, object> pathParams = new()
+    {
+      ["id"] = id
+    };
+    string url = "user/settings/webhooks/{id}".BuildUrl(pathParams);
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "DELETE", url);
+    HttpResponseMessage response = await _httpClient.DeleteAsync(url);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "DELETE", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "DELETE", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    Message? result = JsonSerializer.Deserialize<Message>(responseContent, JsonConfig.Default);
+    return result ?? new Message();
+  }
+
+
+  /// <summary>
   /// Get all possible webhook events
   /// Operation: GET /webhooks/events
   /// </summary>
-  public async Task<JsonElement> GetwebhooksAsync()
+  public async Task<JsonElement> GetWebhookEventsAsync()
   {
     string url = "webhooks/events";
 

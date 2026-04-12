@@ -104,6 +104,44 @@ public class TaskClient
 
 
   /// <summary>
+  /// Get one task by its per-project index
+  /// Operation: GET /projects/{project}/tasks/by-index/{index}
+  /// </summary>
+  public async Task<TaskItem> GetTaskByIndexAsync(int project, int index, GetTaskByIndexRequest? request = null)
+  {
+    Dictionary<string, object> pathParams = new()
+    {
+      ["project"] = project,
+      ["index"] = index
+    };
+    string url = "projects/{project}/tasks/by-index/{index}".BuildUrl(pathParams, request);
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "GET", url);
+    HttpResponseMessage response = await _httpClient.GetAsync(url);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "GET", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "GET", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    TaskItem? result = JsonSerializer.Deserialize<TaskItem>(responseContent, JsonConfig.Default);
+    return result ?? new TaskItem();
+  }
+
+
+  /// <summary>
   /// Update a task bucket
   /// Operation: POST /projects/{project}/views/{view}/buckets/{bucket}/tasks
   /// </summary>
@@ -147,11 +185,11 @@ public class TaskClient
 
   /// <summary>
   /// Get tasks
-  /// Operation: GET /tasks/all
+  /// Operation: GET /tasks
   /// </summary>
   public async Task<List<TaskItem>> GetAllTasksAsync(GetAllTasksRequest? request = null)
   {
-    string url = "tasks/all".BuildUrl(request: request);
+    string url = "tasks".BuildUrl(request: request);
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "GET", url);
@@ -514,16 +552,53 @@ public class TaskClient
 
 
   /// <summary>
+  /// Mark a task as read
+  /// Operation: POST /tasks/{projecttask}/read
+  /// </summary>
+  public async Task<TaskUnreadStatus> MarkTaskAsReadAsync(int projecttask)
+  {
+    Dictionary<string, object> pathParams = new()
+    {
+      ["projecttask"] = projecttask
+    };
+    string url = "tasks/{projecttask}/read".BuildUrl(pathParams);
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "POST", url);
+    HttpResponseMessage response = await _httpClient.PostAsync(url, null);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "POST", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "POST", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    TaskUnreadStatus? result = JsonSerializer.Deserialize<TaskUnreadStatus>(responseContent, JsonConfig.Default);
+    return result ?? new TaskUnreadStatus();
+  }
+
+
+  /// <summary>
   /// Get all task comments
   /// Operation: GET /tasks/{taskID}/comments
   /// </summary>
-  public async Task<List<TaskComment>> GetAsync(int taskId)
+  public async Task<List<TaskComment>> GetTaskCommentsAsync(int taskId, GetTaskCommentsRequest? request = null)
   {
     Dictionary<string, object> pathParams = new()
     {
       ["taskID"] = taskId
     };
-    string url = "tasks/{taskID}/comments".BuildUrl(pathParams);
+    string url = "tasks/{taskID}/comments".BuildUrl(pathParams, request);
 
     long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
     HttpClientLog.LogDebugRequestStarted(_logger, "GET", url);
@@ -591,10 +666,10 @@ public class TaskClient
 
 
   /// <summary>
-  /// Remove a task comment
+  /// Get a task comment
   /// Operation: GET /tasks/{taskID}/comments/{commentID}
   /// </summary>
-  public async Task<TaskComment> GetAsync(int taskId, int commentId)
+  public async Task<TaskComment> GetTaskCommentAsync(int taskId, int commentId)
   {
     Dictionary<string, object> pathParams = new()
     {
@@ -701,6 +776,43 @@ public class TaskClient
     HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
     Message? result = JsonSerializer.Deserialize<Message>(responseContent, JsonConfig.Default);
     return result ?? new Message();
+  }
+
+
+  /// <summary>
+  /// Duplicate a task
+  /// Operation: PUT /tasks/{taskID}/duplicate
+  /// </summary>
+  public async Task<TaskDuplicate> DuplicateTaskAsync(int taskId)
+  {
+    Dictionary<string, object> pathParams = new()
+    {
+      ["taskID"] = taskId
+    };
+    string url = "tasks/{taskID}/duplicate".BuildUrl(pathParams);
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "PUT", url);
+    HttpResponseMessage response = await _httpClient.PutAsync(url, null);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "PUT", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "PUT", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    TaskDuplicate? result = JsonSerializer.Deserialize<TaskDuplicate>(responseContent, JsonConfig.Default);
+    return result ?? new TaskDuplicate();
   }
 
 

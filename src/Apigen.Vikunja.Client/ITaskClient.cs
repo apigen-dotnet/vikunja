@@ -24,6 +24,12 @@ public interface ITaskClient
   Task<List<TaskItem>> GetTasksAsync(int id, int view, GetTasksRequest? request = null);
 
   /// <summary>
+  /// Get one task by its per-project index
+  /// Operation: GET /projects/{project}/tasks/by-index/{index}
+  /// </summary>
+  Task<TaskItem> GetTaskByIndexAsync(int project, int index, GetTaskByIndexRequest? request = null);
+
+  /// <summary>
   /// Update a task bucket
   /// Operation: POST /projects/{project}/views/{view}/buckets/{bucket}/tasks
   /// </summary>
@@ -31,7 +37,7 @@ public interface ITaskClient
 
   /// <summary>
   /// Get tasks
-  /// Operation: GET /tasks/all
+  /// Operation: GET /tasks
   /// </summary>
   Task<List<TaskItem>> GetAllTasksAsync(GetAllTasksRequest? request = null);
 
@@ -90,10 +96,16 @@ public interface ITaskClient
   Task<TaskPosition> UpdateTaskPositionAsync(int id, Apigen.Vikunja.Models.TaskPosition taskPosition);
 
   /// <summary>
+  /// Mark a task as read
+  /// Operation: POST /tasks/{projecttask}/read
+  /// </summary>
+  Task<TaskUnreadStatus> MarkTaskAsReadAsync(int projecttask);
+
+  /// <summary>
   /// Get all task comments
   /// Operation: GET /tasks/{taskID}/comments
   /// </summary>
-  Task<List<TaskComment>> GetAsync(int taskId);
+  Task<List<TaskComment>> GetTaskCommentsAsync(int taskId, GetTaskCommentsRequest? request = null);
 
   /// <summary>
   /// Create a new task comment
@@ -102,10 +114,10 @@ public interface ITaskClient
   Task<TaskComment> CreateTaskCommentAsync(int taskId, Apigen.Vikunja.Models.TaskComment taskComment);
 
   /// <summary>
-  /// Remove a task comment
+  /// Get a task comment
   /// Operation: GET /tasks/{taskID}/comments/{commentID}
   /// </summary>
-  Task<TaskComment> GetAsync(int taskId, int commentId);
+  Task<TaskComment> GetTaskCommentAsync(int taskId, int commentId);
 
   /// <summary>
   /// Update an existing task comment
@@ -118,6 +130,12 @@ public interface ITaskClient
   /// Operation: DELETE /tasks/{taskID}/comments/{commentID}
   /// </summary>
   Task<Message> DeleteTasksCommentsAsync(int taskId, int commentId);
+
+  /// <summary>
+  /// Duplicate a task
+  /// Operation: PUT /tasks/{taskID}/duplicate
+  /// </summary>
+  Task<TaskDuplicate> DuplicateTaskAsync(int taskId);
 
   /// <summary>
   /// Create a new relation between two tasks

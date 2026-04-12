@@ -12,6 +12,12 @@ namespace Apigen.Vikunja.Client;
 public interface ITestingClient
 {
   /// <summary>
+  /// Truncate all tables
+  /// Operation: DELETE /test/all
+  /// </summary>
+  Task<JsonElement> TruncateAllTablesAsync();
+
+  /// <summary>
   /// Reset the db to a defined state
   /// Operation: PATCH /test/{table}
   /// </summary>

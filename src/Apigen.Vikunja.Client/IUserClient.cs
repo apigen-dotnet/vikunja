@@ -162,12 +162,6 @@ public interface IUserClient
   Task<JsonElement> GetUserTimezonesAsync();
 
   /// <summary>
-  /// Renew user token
-  /// Operation: POST /user/token
-  /// </summary>
-  Task<AuthToken> PostAsync();
-
-  /// <summary>
   /// Get users
   /// Operation: GET /users
   /// </summary>

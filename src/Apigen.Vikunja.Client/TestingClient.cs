@@ -26,6 +26,39 @@ public class TestingClient
   }
 
   /// <summary>
+  /// Truncate all tables
+  /// Operation: DELETE /test/all
+  /// </summary>
+  public async Task<JsonElement> TruncateAllTablesAsync()
+  {
+    string url = "test/all";
+
+    long startTimestamp = System.Diagnostics.Stopwatch.GetTimestamp();
+    HttpClientLog.LogDebugRequestStarted(_logger, "DELETE", url);
+    HttpResponseMessage response = await _httpClient.DeleteAsync(url);
+    long durationMs = (long)System.Diagnostics.Stopwatch.GetElapsedTime(startTimestamp).TotalMilliseconds;
+    HttpClientLog.LogDebugRequestCompleted(_logger, (int)response.StatusCode, "DELETE", url, durationMs);
+
+    string responseContent;
+    try
+    {
+      response.EnsureSuccessStatusCode();
+      responseContent = await response.Content.ReadAsStringAsync();
+    }
+    catch (HttpRequestException ex)
+    {
+      responseContent = await response.Content.ReadAsStringAsync();
+      HttpClientLog.LogErrorRequestFailed(_logger, (int)response.StatusCode, "DELETE", url, responseContent, ex);
+      throw;
+    }
+
+    HttpClientLog.LogTraceResponseBody(_logger, url, responseContent);
+    JsonElement result = JsonSerializer.Deserialize<JsonElement>(responseContent, JsonConfig.Default);
+    return result;
+  }
+
+
+  /// <summary>
   /// Reset the db to a defined state
   /// Operation: PATCH /test/{table}
   /// </summary>
