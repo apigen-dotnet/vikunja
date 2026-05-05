@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// user.Token from OpenAPI schema.
 /// Schema path: #/components/schemas/user.Token
 /// </summary>
-public class UserToken
+public partial class UserToken
 {
   [System.Text.Json.Serialization.JsonPropertyName("created")]
   public string? Created { get; set; }

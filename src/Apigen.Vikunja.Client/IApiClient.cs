@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for api operations
 /// </summary>
-public interface IApiClient
+public partial interface IApiClient
 {
   /// <summary>
   /// Get a list of all token api routes

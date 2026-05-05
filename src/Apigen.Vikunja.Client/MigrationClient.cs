@@ -14,7 +14,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Client for migration operations
 /// </summary>
-public class MigrationClient
+public partial class MigrationClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;

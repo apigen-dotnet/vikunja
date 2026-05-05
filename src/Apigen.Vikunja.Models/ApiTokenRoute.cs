@@ -24,6 +24,6 @@ namespace Apigen.Vikunja.Models;
 /// models.APITokenRoute from OpenAPI schema.
 /// Schema path: #/components/schemas/models.APITokenRoute
 /// </summary>
-public class ApiTokenRoute
+public partial class ApiTokenRoute
 {
 }

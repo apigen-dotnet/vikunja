@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// auth.Token from OpenAPI schema.
 /// Schema path: #/components/schemas/auth.Token
 /// </summary>
-public class AuthToken
+public partial class AuthToken
 {
   [System.Text.Json.Serialization.JsonPropertyName("token")]
   public string? Token { get; set; }

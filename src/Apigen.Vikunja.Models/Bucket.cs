@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.Bucket from OpenAPI schema.
 /// Schema path: #/components/schemas/models.Bucket
 /// </summary>
-public class Bucket
+public partial class Bucket
 {
   /// <summary>
   /// The number of tasks currently in this bucket

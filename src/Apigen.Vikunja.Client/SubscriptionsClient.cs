@@ -14,7 +14,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Client for subscriptions operations
 /// </summary>
-public class SubscriptionsClient
+public partial class SubscriptionsClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;

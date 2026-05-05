@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TaskCollection from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TaskCollection
 /// </summary>
-public class TaskCollection
+public partial class TaskCollection
 {
   /// <summary>
   /// The filter query to match tasks by. Check out https://vikunja.io/docs/filters for a full explanation.

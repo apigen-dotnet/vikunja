@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Search for a background from unsplash
 /// Operation: GET /backgrounds/unsplash/search
 /// </summary>
-public class SearchUnsplashBackgroundsRequest : BaseRequest
+public partial class SearchUnsplashBackgroundsRequest : BaseRequest
 {
   /// <summary>
   /// Search backgrounds from unsplash with this search term.

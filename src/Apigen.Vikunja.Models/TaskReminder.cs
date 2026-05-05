@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TaskReminder from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TaskReminder
 /// </summary>
-public class TaskReminder
+public partial class TaskReminder
 {
   /// <summary>
   /// A period in seconds relative to another date argument. Negative values mean the reminder triggers before the date. Default: 0, tiggers when RelativeTo is due.

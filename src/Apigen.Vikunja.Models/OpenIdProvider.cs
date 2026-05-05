@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// code_vikunja_io_api_pkg_modules_auth_openid.Provider from OpenAPI schema.
 /// Schema path: #/components/schemas/code_vikunja_io_api_pkg_modules_auth_openid.Provider
 /// </summary>
-public class OpenIdProvider
+public partial class OpenIdProvider
 {
   [System.Text.Json.Serialization.JsonPropertyName("auth_url")]
   public string? AuthUrl { get; set; }

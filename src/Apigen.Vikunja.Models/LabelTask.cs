@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.LabelTask from OpenAPI schema.
 /// Schema path: #/components/schemas/models.LabelTask
 /// </summary>
-public class LabelTask
+public partial class LabelTask
 {
   /// <summary>
   /// A timestamp when this task was created. You cannot change this value.

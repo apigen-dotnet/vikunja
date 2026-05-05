@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TaskUnreadStatus from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TaskUnreadStatus
 /// </summary>
-public class TaskUnreadStatus
+public partial class TaskUnreadStatus
 {
   [System.Text.Json.Serialization.JsonPropertyName("taskID")]
   public int? TaskId { get; set; }

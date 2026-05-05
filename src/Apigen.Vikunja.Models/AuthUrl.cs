@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// handler.AuthURL from OpenAPI schema.
 /// Schema path: #/components/schemas/handler.AuthURL
 /// </summary>
-public class AuthUrl
+public partial class AuthUrl
 {
   [System.Text.Json.Serialization.JsonPropertyName("url")]
   public string? Url { get; set; }

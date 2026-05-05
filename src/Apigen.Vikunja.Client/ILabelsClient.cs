@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for labels operations
 /// </summary>
-public interface ILabelsClient
+public partial interface ILabelsClient
 {
   /// <summary>
   /// Get all labels a user has access to

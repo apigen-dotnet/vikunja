@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for subscriptions operations
 /// </summary>
-public interface ISubscriptionsClient
+public partial interface ISubscriptionsClient
 {
   /// <summary>
   /// Get all notifications for the current user

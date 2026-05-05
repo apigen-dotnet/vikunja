@@ -24,6 +24,6 @@ namespace Apigen.Vikunja.Models;
 /// models.APIPermissions from OpenAPI schema.
 /// Schema path: #/components/schemas/models.APIPermissions
 /// </summary>
-public class ApiPermissions
+public partial class ApiPermissions
 {
 }

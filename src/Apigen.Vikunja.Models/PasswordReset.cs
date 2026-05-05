@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// user.PasswordReset from OpenAPI schema.
 /// Schema path: #/components/schemas/user.PasswordReset
 /// </summary>
-public class PasswordReset
+public partial class PasswordReset
 {
   /// <summary>
   /// The new password for this user.

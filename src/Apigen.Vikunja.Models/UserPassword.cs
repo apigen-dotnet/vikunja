@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.UserPassword from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.UserPassword
 /// </summary>
-public class UserPassword
+public partial class UserPassword
 {
   [MinLength(8)]
   [MaxLength(72)]

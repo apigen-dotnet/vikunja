@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for sharing operations
 /// </summary>
-public interface ISharingClient
+public partial interface ISharingClient
 {
   /// <summary>
   /// Mark all notifications of a user as read

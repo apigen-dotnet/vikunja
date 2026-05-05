@@ -14,7 +14,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Client for task operations
 /// </summary>
-public class TaskClient
+public partial class TaskClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;

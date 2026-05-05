@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.openIDAuthInfo from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.openIDAuthInfo
 /// </summary>
-public class OpenIdAuthInfo
+public partial class OpenIdAuthInfo
 {
   [System.Text.Json.Serialization.JsonPropertyName("enabled")]
   public bool? Enabled { get; set; }

@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Get teams on a project
 /// Operation: GET /projects/{id}/teams
 /// </summary>
-public class GetsharingRequest : BaseRequest
+public partial class GetsharingRequest : BaseRequest
 {
   /// <summary>
   /// The page number. Used for pagination. If not provided, the first page of results is returned.

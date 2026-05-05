@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// microsofttodo.Migration from OpenAPI schema.
 /// Schema path: #/components/schemas/microsofttodo.Migration
 /// </summary>
-public class MicrosoftTodoMigration
+public partial class MicrosoftTodoMigration
 {
   [System.Text.Json.Serialization.JsonPropertyName("code")]
   public string? Code { get; set; }

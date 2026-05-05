@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for testing operations
 /// </summary>
-public interface ITestingClient
+public partial interface ITestingClient
 {
   /// <summary>
   /// Truncate all tables

@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TeamUser from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TeamUser
 /// </summary>
-public class TeamUser
+public partial class TeamUser
 {
   /// <summary>
   /// Whether the member is an admin of the team. See the docs for more about what a team admin can do

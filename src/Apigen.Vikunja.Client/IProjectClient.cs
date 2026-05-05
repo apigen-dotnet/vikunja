@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for project operations
 /// </summary>
-public interface IProjectClient
+public partial interface IProjectClient
 {
   /// <summary>
   /// Get an unsplash image

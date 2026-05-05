@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Get  all attachments for one task.
 /// Operation: GET /tasks/{id}/attachments
 /// </summary>
-public class GetTaskAttachmentsRequest : BaseRequest
+public partial class GetTaskAttachmentsRequest : BaseRequest
 {
   /// <summary>
   /// The page number. Used for pagination. If not provided, the first page of results is returned.

@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Get all api tokens of the current user
 /// Operation: GET /tokens
 /// </summary>
-public class GetapiRequest : BaseRequest
+public partial class GetapiRequest : BaseRequest
 {
   /// <summary>
   /// The page number, used for pagination. If not provided, the first page of results is returned.

@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.UserDeletionRequestConfirm from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.UserDeletionRequestConfirm
 /// </summary>
-public class UserDeletionRequestConfirm
+public partial class UserDeletionRequestConfirm
 {
   [System.Text.Json.Serialization.JsonPropertyName("token")]
   public string? Token { get; set; }

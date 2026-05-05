@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TaskAssginee from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TaskAssginee
 /// </summary>
-public class TaskAssignee
+public partial class TaskAssignee
 {
   [System.Text.Json.Serialization.JsonPropertyName("created")]
   public string? Created { get; set; }

@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for assignees operations
 /// </summary>
-public interface IAssigneesClient
+public partial interface IAssigneesClient
 {
   /// <summary>
   /// Get all assignees for a task

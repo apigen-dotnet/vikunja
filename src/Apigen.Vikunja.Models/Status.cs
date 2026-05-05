@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// migration.Status from OpenAPI schema.
 /// Schema path: #/components/schemas/migration.Status
 /// </summary>
-public class Status
+public partial class Status
 {
   [System.Text.Json.Serialization.JsonPropertyName("finished_at")]
   public string? FinishedAt { get; set; }

@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Get all task comments
 /// Operation: GET /tasks/{taskID}/comments
 /// </summary>
-public class GetTaskCommentsRequest : BaseRequest
+public partial class GetTaskCommentsRequest : BaseRequest
 {
   /// <summary>
   /// Sort order. Can be &apos;asc&apos; for ascending or &apos;desc&apos; for descending. Defaults to &apos;asc&apos;.

@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.ldapAuthInfo from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.ldapAuthInfo
 /// </summary>
-public class LdapAuthInfo
+public partial class LdapAuthInfo
 {
   [System.Text.Json.Serialization.JsonPropertyName("enabled")]
   public bool? Enabled { get; set; }

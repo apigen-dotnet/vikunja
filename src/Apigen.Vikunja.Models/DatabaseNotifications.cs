@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.DatabaseNotifications from OpenAPI schema.
 /// Schema path: #/components/schemas/models.DatabaseNotifications
 /// </summary>
-public class DatabaseNotifications
+public partial class DatabaseNotifications
 {
   /// <summary>
   /// A timestamp when this notification was created. You cannot change this value.

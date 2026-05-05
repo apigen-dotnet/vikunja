@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TaskBucket from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TaskBucket
 /// </summary>
-public class TaskBucket
+public partial class TaskBucket
 {
   [System.Text.Json.Serialization.JsonPropertyName("bucket")]
   public Bucket? Bucket { get; set; }

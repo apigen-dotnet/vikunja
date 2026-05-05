@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.Subscription from OpenAPI schema.
 /// Schema path: #/components/schemas/models.Subscription
 /// </summary>
-public class Subscription
+public partial class Subscription
 {
   /// <summary>
   /// A timestamp when this subscription was created. You cannot change this value.

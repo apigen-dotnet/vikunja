@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Get users
 /// Operation: GET /users
 /// </summary>
-public class GetuserRequest : BaseRequest
+public partial class GetuserRequest : BaseRequest
 {
   /// <summary>
   /// The search criteria.

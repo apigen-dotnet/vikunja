@@ -24,6 +24,6 @@ namespace Apigen.Vikunja.Models;
 /// models.ReactionMap from OpenAPI schema.
 /// Schema path: #/components/schemas/models.ReactionMap
 /// </summary>
-public class ReactionMap
+public partial class ReactionMap
 {
 }

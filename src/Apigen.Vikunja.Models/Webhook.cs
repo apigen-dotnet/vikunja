@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.Webhook from OpenAPI schema.
 /// Schema path: #/components/schemas/models.Webhook
 /// </summary>
-public class Webhook
+public partial class Webhook
 {
   [System.Text.Json.Serialization.JsonPropertyName("basic_auth_password")]
   public string? BasicAuthPassword { get; set; }

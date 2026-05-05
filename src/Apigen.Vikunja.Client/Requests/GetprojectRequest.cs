@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Get all projects a user has access to
 /// Operation: GET /projects
 /// </summary>
-public class GetprojectRequest : BaseRequest
+public partial class GetprojectRequest : BaseRequest
 {
   /// <summary>
   /// The page number. Used for pagination. If not provided, the first page of results is returned.

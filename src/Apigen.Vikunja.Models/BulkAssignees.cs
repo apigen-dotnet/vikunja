@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.BulkAssignees from OpenAPI schema.
 /// Schema path: #/components/schemas/models.BulkAssignees
 /// </summary>
-public class BulkAssignees
+public partial class BulkAssignees
 {
   /// <summary>
   /// A project with all assignees

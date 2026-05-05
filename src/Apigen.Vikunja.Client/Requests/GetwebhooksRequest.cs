@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Get all api webhook targets for the specified project
 /// Operation: GET /projects/{id}/webhooks
 /// </summary>
-public class GetwebhooksRequest : BaseRequest
+public partial class GetwebhooksRequest : BaseRequest
 {
   /// <summary>
   /// The page number. Used for pagination. If not provided, the first page of results is returned.

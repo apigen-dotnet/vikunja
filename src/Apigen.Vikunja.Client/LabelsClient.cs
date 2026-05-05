@@ -14,7 +14,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Client for labels operations
 /// </summary>
-public class LabelsClient
+public partial class LabelsClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;

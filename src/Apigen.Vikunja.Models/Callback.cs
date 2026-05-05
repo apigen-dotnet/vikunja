@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// openid.Callback from OpenAPI schema.
 /// Schema path: #/components/schemas/openid.Callback
 /// </summary>
-public class Callback
+public partial class Callback
 {
   [System.Text.Json.Serialization.JsonPropertyName("code")]
   public string? Code { get; set; }

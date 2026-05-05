@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.ProjectDuplicate from OpenAPI schema.
 /// Schema path: #/components/schemas/models.ProjectDuplicate
 /// </summary>
-public class ProjectDuplicate
+public partial class ProjectDuplicate
 {
   /// <summary>
   /// The copied project

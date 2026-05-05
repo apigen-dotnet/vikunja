@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// user.PasswordTokenRequest from OpenAPI schema.
 /// Schema path: #/components/schemas/user.PasswordTokenRequest
 /// </summary>
-public class PasswordTokenRequest
+public partial class PasswordTokenRequest
 {
   [MaxLength(250)]
   [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]

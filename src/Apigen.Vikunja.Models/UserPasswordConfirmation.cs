@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.UserPasswordConfirmation from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.UserPasswordConfirmation
 /// </summary>
-public class UserPasswordConfirmation
+public partial class UserPasswordConfirmation
 {
   [System.Text.Json.Serialization.JsonPropertyName("password")]
   public string? Password { get; set; }

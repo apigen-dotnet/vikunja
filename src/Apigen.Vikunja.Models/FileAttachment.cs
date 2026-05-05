@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// files.File from OpenAPI schema.
 /// Schema path: #/components/schemas/files.File
 /// </summary>
-public class FileAttachment
+public partial class FileAttachment
 {
   [System.Text.Json.Serialization.JsonPropertyName("created")]
   public string? Created { get; set; }

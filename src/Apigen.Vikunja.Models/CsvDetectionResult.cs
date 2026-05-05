@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// csv.DetectionResult from OpenAPI schema.
 /// Schema path: #/components/schemas/csv.DetectionResult
 /// </summary>
-public class CsvDetectionResult
+public partial class CsvDetectionResult
 {
   [System.Text.Json.Serialization.JsonPropertyName("columns")]
   public List<string?>? Columns { get; set; }

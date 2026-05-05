@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// background.Image from OpenAPI schema.
 /// Schema path: #/components/schemas/background.Image
 /// </summary>
-public class Image
+public partial class Image
 {
   [System.Text.Json.Serialization.JsonPropertyName("blur_hash")]
   public string? BlurHash { get; set; }

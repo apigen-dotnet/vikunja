@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// user.TOTP from OpenAPI schema.
 /// Schema path: #/components/schemas/user.TOTP
 /// </summary>
-public class Totp
+public partial class Totp
 {
   /// <summary>
   /// The totp entry will only be enabled after the user verified they have a working totp setup.

@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// todoist.Migration from OpenAPI schema.
 /// Schema path: #/components/schemas/todoist.Migration
 /// </summary>
-public class TodoistMigration
+public partial class TodoistMigration
 {
   [System.Text.Json.Serialization.JsonPropertyName("code")]
   public string? Code { get; set; }

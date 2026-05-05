@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.UserAvatarProvider from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.UserAvatarProvider
 /// </summary>
-public class UserAvatarProvider
+public partial class UserAvatarProvider
 {
   /// <summary>
   /// The avatar provider. Valid types are gravatar (uses the user email), upload, initials, marble (generates a random avatar for each user), ldap (synced from LDAP server), openid (synced from OpenID provider), default.

@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.Label from OpenAPI schema.
 /// Schema path: #/components/schemas/models.Label
 /// </summary>
-public class Label
+public partial class Label
 {
   /// <summary>
   /// A timestamp when this label was created. You cannot change this value.

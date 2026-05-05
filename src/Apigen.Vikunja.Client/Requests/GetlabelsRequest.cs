@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Get all labels a user has access to
 /// Operation: GET /labels
 /// </summary>
-public class GetlabelsRequest : BaseRequest
+public partial class GetlabelsRequest : BaseRequest
 {
   /// <summary>
   /// The page number. Used for pagination. If not provided, the first page of results is returned.

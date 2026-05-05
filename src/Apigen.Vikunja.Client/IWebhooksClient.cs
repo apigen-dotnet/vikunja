@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for webhooks operations
 /// </summary>
-public interface IWebhooksClient
+public partial interface IWebhooksClient
 {
   /// <summary>
   /// Get all api webhook targets for the specified project

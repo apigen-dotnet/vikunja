@@ -14,7 +14,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Client for project operations
 /// </summary>
-public class ProjectClient
+public partial class ProjectClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;

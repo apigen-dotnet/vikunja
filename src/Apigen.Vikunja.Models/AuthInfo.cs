@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.authInfo from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.authInfo
 /// </summary>
-public class AuthInfo
+public partial class AuthInfo
 {
   [System.Text.Json.Serialization.JsonPropertyName("ldap")]
   public LdapAuthInfo? Ldap { get; set; }

@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.UserRegister from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.UserRegister
 /// </summary>
-public class UserRegister
+public partial class UserRegister
 {
   /// <summary>
   /// The user&apos;s email address

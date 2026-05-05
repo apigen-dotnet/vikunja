@@ -14,7 +14,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Client for user operations
 /// </summary>
-public class UserClient
+public partial class UserClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;

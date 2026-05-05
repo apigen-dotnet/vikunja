@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// csv.ColumnMapping from OpenAPI schema.
 /// Schema path: #/components/schemas/csv.ColumnMapping
 /// </summary>
-public class CsvColumnMapping
+public partial class CsvColumnMapping
 {
   [System.Text.Json.Serialization.JsonPropertyName("attribute")]
   public CsvTaskAttribute? Attribute { get; set; }

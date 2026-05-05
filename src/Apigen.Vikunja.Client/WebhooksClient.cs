@@ -14,7 +14,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Client for webhooks operations
 /// </summary>
-public class WebhooksClient
+public partial class WebhooksClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;

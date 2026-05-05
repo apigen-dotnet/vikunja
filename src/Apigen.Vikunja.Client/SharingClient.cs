@@ -14,7 +14,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Client for sharing operations
 /// </summary>
-public class SharingClient
+public partial class SharingClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;

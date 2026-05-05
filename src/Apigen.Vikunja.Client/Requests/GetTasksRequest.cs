@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Get tasks in a project
 /// Operation: GET /projects/{id}/views/{view}/tasks
 /// </summary>
-public class GetTasksRequest : BaseRequest
+public partial class GetTasksRequest : BaseRequest
 {
   /// <summary>
   /// The page number. Used for pagination. If not provided, the first page of results is returned.

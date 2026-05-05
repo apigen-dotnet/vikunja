@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// csv.PreviewTask from OpenAPI schema.
 /// Schema path: #/components/schemas/csv.PreviewTask
 /// </summary>
-public class CsvPreviewTask
+public partial class CsvPreviewTask
 {
   [System.Text.Json.Serialization.JsonPropertyName("description")]
   public string? Description { get; set; }

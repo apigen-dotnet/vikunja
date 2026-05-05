@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for auth operations
 /// </summary>
-public interface IAuthClient
+public partial interface IAuthClient
 {
   /// <summary>
   /// Authenticate a user with OpenID Connect

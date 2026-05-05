@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TaskDuplicate from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TaskDuplicate
 /// </summary>
-public class TaskDuplicate
+public partial class TaskDuplicate
 {
   /// <summary>
   /// The duplicated task

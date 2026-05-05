@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.LinkShareAuth from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.LinkShareAuth
 /// </summary>
-public class LinkShareAuth
+public partial class LinkShareAuth
 {
   [System.Text.Json.Serialization.JsonPropertyName("password")]
   public string? Password { get; set; }

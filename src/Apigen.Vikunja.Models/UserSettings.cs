@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.UserSettings from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.UserSettings
 /// </summary>
-public class UserSettings
+public partial class UserSettings
 {
   /// <summary>
   /// If a task is created without a specified project this value should be used. Applies

@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.vikunjaInfos from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.vikunjaInfos
 /// </summary>
-public class VikunjaInfos
+public partial class VikunjaInfos
 {
   [System.Text.Json.Serialization.JsonPropertyName("auth")]
   public AuthInfo? Auth { get; set; }

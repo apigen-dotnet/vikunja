@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TaskRelation from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TaskRelation
 /// </summary>
-public class TaskRelation
+public partial class TaskRelation
 {
   /// <summary>
   /// A timestamp when this label was created. You cannot change this value.

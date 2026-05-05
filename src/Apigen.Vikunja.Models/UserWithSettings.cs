@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.UserWithSettings from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.UserWithSettings
 /// </summary>
-public class UserWithSettings
+public partial class UserWithSettings
 {
   [System.Text.Json.Serialization.JsonPropertyName("auth_provider")]
   public string? AuthProvider { get; set; }

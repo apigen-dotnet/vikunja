@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// user.Login from OpenAPI schema.
 /// Schema path: #/components/schemas/user.Login
 /// </summary>
-public class Login
+public partial class Login
 {
   /// <summary>
   /// If true, the token returned will be valid a lot longer than default. Useful for &quot;remember me&quot; style logins.

@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.SavedFilter from OpenAPI schema.
 /// Schema path: #/components/schemas/models.SavedFilter
 /// </summary>
-public class SavedFilter
+public partial class SavedFilter
 {
   /// <summary>
   /// A timestamp when this filter was created. You cannot change this value.

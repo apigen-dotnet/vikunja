@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.Project from OpenAPI schema.
 /// Schema path: #/components/schemas/models.Project
 /// </summary>
-public class Project
+public partial class Project
 {
   /// <summary>
   /// Contains a very small version of the project background to use as a blurry preview until the actual background is loaded. Check out https://blurha.sh/ to learn how it works.

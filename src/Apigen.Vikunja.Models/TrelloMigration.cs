@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// trello.Migration from OpenAPI schema.
 /// Schema path: #/components/schemas/trello.Migration
 /// </summary>
-public class TrelloMigration
+public partial class TrelloMigration
 {
   [System.Text.Json.Serialization.JsonPropertyName("code")]
   public string? Code { get; set; }

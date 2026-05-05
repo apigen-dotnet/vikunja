@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.ProjectView from OpenAPI schema.
 /// Schema path: #/components/schemas/models.ProjectView
 /// </summary>
-public class ProjectView
+public partial class ProjectView
 {
   /// <summary>
   /// When the bucket configuration mode is not manual, this field holds the options of that configuration.

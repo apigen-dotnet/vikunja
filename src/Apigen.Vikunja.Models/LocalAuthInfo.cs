@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.localAuthInfo from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.localAuthInfo
 /// </summary>
-public class LocalAuthInfo
+public partial class LocalAuthInfo
 {
   [System.Text.Json.Serialization.JsonPropertyName("enabled")]
   public bool? Enabled { get; set; }

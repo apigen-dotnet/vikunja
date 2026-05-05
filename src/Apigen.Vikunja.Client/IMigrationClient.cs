@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for migration operations
 /// </summary>
-public interface IMigrationClient
+public partial interface IMigrationClient
 {
   /// <summary>
   /// Detect CSV structure

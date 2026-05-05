@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for user operations
 /// </summary>
-public interface IUserClient
+public partial interface IUserClient
 {
   /// <summary>
   /// Get user information

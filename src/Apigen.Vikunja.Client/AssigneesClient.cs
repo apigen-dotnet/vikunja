@@ -14,7 +14,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Client for assignees operations
 /// </summary>
-public class AssigneesClient
+public partial class AssigneesClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;

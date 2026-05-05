@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Get one attachment.
 /// Operation: GET /tasks/{id}/attachments/{attachmentID}
 /// </summary>
-public class GetTaskAttachmentRequest : BaseRequest
+public partial class GetTaskAttachmentRequest : BaseRequest
 {
   /// <summary>
   /// The size of the preview image. Can be sm = 100px, md = 200px, lg = 400px or xl = 800px. If provided, a preview image will be returned if the attachment is an image.

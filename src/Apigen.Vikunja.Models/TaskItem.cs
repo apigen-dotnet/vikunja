@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.Task from OpenAPI schema.
 /// Schema path: #/components/schemas/models.Task
 /// </summary>
-public class TaskItem
+public partial class TaskItem
 {
   /// <summary>
   /// An array of users who are assigned to this task

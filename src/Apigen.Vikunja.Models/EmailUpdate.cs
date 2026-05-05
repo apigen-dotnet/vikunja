@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// user.EmailUpdate from OpenAPI schema.
 /// Schema path: #/components/schemas/user.EmailUpdate
 /// </summary>
-public class EmailUpdate
+public partial class EmailUpdate
 {
   /// <summary>
   /// The new email address. Needs to be a valid email address.

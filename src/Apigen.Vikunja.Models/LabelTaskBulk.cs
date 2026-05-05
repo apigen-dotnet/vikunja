@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.LabelTaskBulk from OpenAPI schema.
 /// Schema path: #/components/schemas/models.LabelTaskBulk
 /// </summary>
-public class LabelTaskBulk
+public partial class LabelTaskBulk
 {
   /// <summary>
   /// All labels you want to update at once.

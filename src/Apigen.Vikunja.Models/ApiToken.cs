@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.APIToken from OpenAPI schema.
 /// Schema path: #/components/schemas/models.APIToken
 /// </summary>
-public class ApiToken
+public partial class ApiToken
 {
   /// <summary>
   /// A timestamp when this api key was created. You cannot change this value.

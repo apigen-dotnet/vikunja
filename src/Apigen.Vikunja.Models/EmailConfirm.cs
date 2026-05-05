@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// user.EmailConfirm from OpenAPI schema.
 /// Schema path: #/components/schemas/user.EmailConfirm
 /// </summary>
-public class EmailConfirm
+public partial class EmailConfirm
 {
   /// <summary>
   /// The email confirm token sent via email.

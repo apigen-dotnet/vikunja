@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TaskAttachment from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TaskAttachment
 /// </summary>
-public class TaskAttachment
+public partial class TaskAttachment
 {
   [System.Text.Json.Serialization.JsonPropertyName("created")]
   public string? Created { get; set; }

@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for team operations
 /// </summary>
-public interface ITeamClient
+public partial interface ITeamClient
 {
   /// <summary>
   /// Get teams

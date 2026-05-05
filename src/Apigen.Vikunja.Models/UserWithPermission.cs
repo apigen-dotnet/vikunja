@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.UserWithPermission from OpenAPI schema.
 /// Schema path: #/components/schemas/models.UserWithPermission
 /// </summary>
-public class UserWithPermission
+public partial class UserWithPermission
 {
   /// <summary>
   /// A timestamp when this task was created. You cannot change this value.

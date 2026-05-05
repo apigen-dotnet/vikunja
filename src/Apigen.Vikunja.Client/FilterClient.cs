@@ -14,7 +14,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Client for filter operations
 /// </summary>
-public class FilterClient
+public partial class FilterClient
 {
   private readonly HttpClient _httpClient;
   private readonly ILogger? _logger;

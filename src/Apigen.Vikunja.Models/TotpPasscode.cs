@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// user.TOTPPasscode from OpenAPI schema.
 /// Schema path: #/components/schemas/user.TOTPPasscode
 /// </summary>
-public class TotpPasscode
+public partial class TotpPasscode
 {
   [System.Text.Json.Serialization.JsonPropertyName("passcode")]
   public string? Passcode { get; set; }

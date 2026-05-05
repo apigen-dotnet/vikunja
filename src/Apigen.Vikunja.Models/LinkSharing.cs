@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.LinkSharing from OpenAPI schema.
 /// Schema path: #/components/schemas/models.LinkSharing
 /// </summary>
-public class LinkSharing
+public partial class LinkSharing
 {
   /// <summary>
   /// A timestamp when this project was shared. You cannot change this value.

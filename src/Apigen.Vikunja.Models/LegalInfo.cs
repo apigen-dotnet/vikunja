@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.legalInfo from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.legalInfo
 /// </summary>
-public class LegalInfo
+public partial class LegalInfo
 {
   [System.Text.Json.Serialization.JsonPropertyName("imprint_url")]
   public string? ImprintUrl { get; set; }

@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TeamWithPermission from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TeamWithPermission
 /// </summary>
-public class TeamWithPermission
+public partial class TeamWithPermission
 {
   /// <summary>
   /// A timestamp when this relation was created. You cannot change this value.

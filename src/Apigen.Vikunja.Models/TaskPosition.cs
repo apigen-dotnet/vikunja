@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TaskPosition from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TaskPosition
 /// </summary>
-public class TaskPosition
+public partial class TaskPosition
 {
   /// <summary>
   /// The position of the task - any task project can be sorted as usual by this parameter.

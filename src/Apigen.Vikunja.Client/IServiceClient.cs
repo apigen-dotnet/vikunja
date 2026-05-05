@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for service operations
 /// </summary>
-public interface IServiceClient
+public partial interface IServiceClient
 {
   /// <summary>
   /// Info

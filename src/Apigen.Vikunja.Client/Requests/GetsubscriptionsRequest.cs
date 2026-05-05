@@ -11,7 +11,7 @@ namespace Apigen.Vikunja.Client;
 /// Request parameters for Get all notifications for the current user
 /// Operation: GET /notifications
 /// </summary>
-public class GetsubscriptionsRequest : BaseRequest
+public partial class GetsubscriptionsRequest : BaseRequest
 {
   /// <summary>
   /// The page number. Used for pagination. If not provided, the first page of results is returned.

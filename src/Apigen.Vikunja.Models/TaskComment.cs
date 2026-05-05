@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.TaskComment from OpenAPI schema.
 /// Schema path: #/components/schemas/models.TaskComment
 /// </summary>
-public class TaskComment
+public partial class TaskComment
 {
   [System.Text.Json.Serialization.JsonPropertyName("author")]
   public User? Author { get; set; }

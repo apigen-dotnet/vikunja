@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.Reaction from OpenAPI schema.
 /// Schema path: #/components/schemas/models.Reaction
 /// </summary>
-public class Reaction
+public partial class Reaction
 {
   /// <summary>
   /// A timestamp when this reaction was created. You cannot change this value.

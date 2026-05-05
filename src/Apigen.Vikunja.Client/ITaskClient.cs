@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for task operations
 /// </summary>
-public interface ITaskClient
+public partial interface ITaskClient
 {
   /// <summary>
   /// Create a task

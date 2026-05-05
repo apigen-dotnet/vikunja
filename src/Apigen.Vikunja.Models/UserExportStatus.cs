@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// v1.UserExportStatus from OpenAPI schema.
 /// Schema path: #/components/schemas/v1.UserExportStatus
 /// </summary>
-public class UserExportStatus
+public partial class UserExportStatus
 {
   [System.Text.Json.Serialization.JsonPropertyName("created")]
   public string? Created { get; set; }

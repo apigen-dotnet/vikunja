@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.RouteDetail from OpenAPI schema.
 /// Schema path: #/components/schemas/models.RouteDetail
 /// </summary>
-public class RouteDetail
+public partial class RouteDetail
 {
   [System.Text.Json.Serialization.JsonPropertyName("method")]
   public string? Method { get; set; }

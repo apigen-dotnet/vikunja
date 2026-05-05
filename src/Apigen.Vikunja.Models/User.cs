@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// user.User from OpenAPI schema.
 /// Schema path: #/components/schemas/user.User
 /// </summary>
-public class User
+public partial class User
 {
   /// <summary>
   /// A timestamp when this task was created. You cannot change this value.

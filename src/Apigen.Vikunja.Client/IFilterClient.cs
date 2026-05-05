@@ -9,7 +9,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Interface for filter operations
 /// </summary>
-public interface IFilterClient
+public partial interface IFilterClient
 {
   /// <summary>
   /// Creates a new saved filter

@@ -24,6 +24,6 @@ namespace Apigen.Vikunja.Models;
 /// models.RelatedTaskMap from OpenAPI schema.
 /// Schema path: #/components/schemas/models.RelatedTaskMap
 /// </summary>
-public class RelatedTaskMap
+public partial class RelatedTaskMap
 {
 }

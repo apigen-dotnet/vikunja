@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// web.HTTPError from OpenAPI schema.
 /// Schema path: #/components/schemas/web.HTTPError
 /// </summary>
-public class HttpError
+public partial class HttpError
 {
   [System.Text.Json.Serialization.JsonPropertyName("code")]
   public int? Code { get; set; }

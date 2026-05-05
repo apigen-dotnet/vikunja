@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.BulkTask from OpenAPI schema.
 /// Schema path: #/components/schemas/models.BulkTask
 /// </summary>
-public class BulkTask
+public partial class BulkTask
 {
   [System.Text.Json.Serialization.JsonPropertyName("fields")]
   public List<string?>? Fields { get; set; }

@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.ProjectUser from OpenAPI schema.
 /// Schema path: #/components/schemas/models.ProjectUser
 /// </summary>
-public class ProjectUser
+public partial class ProjectUser
 {
   /// <summary>
   /// A timestamp when this relation was created. You cannot change this value.

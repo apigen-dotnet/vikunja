@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.Message from OpenAPI schema.
 /// Schema path: #/components/schemas/models.Message
 /// </summary>
-public class Message
+public partial class Message
 {
   /// <summary>
   /// A standard message.

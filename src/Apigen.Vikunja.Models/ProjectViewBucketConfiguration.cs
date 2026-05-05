@@ -24,7 +24,7 @@ namespace Apigen.Vikunja.Models;
 /// models.ProjectViewBucketConfiguration from OpenAPI schema.
 /// Schema path: #/components/schemas/models.ProjectViewBucketConfiguration
 /// </summary>
-public class ProjectViewBucketConfiguration
+public partial class ProjectViewBucketConfiguration
 {
   [System.Text.Json.Serialization.JsonPropertyName("filter")]
   public TaskCollection? Filter { get; set; }
