@@ -12,7 +12,7 @@ namespace Apigen.Vikunja.Client;
 /// <summary>
 /// Main API client for accessing all resources
 /// </summary>
-public partial class VikunjaApiClient
+public partial class VikunjaApiClient : IDisposable
 {
   private readonly HttpClient _httpClient;
   private readonly bool _disposeHttpClient;
