@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Apigen.Vikunja.Models;
 
@@ -15,114 +16,114 @@ public partial interface IMigrationClient
   /// Detect CSV structure
   /// Operation: PUT /migration/csv/detect
   /// </summary>
-  Task<CsvDetectionResult> DetectCsvStructureAsync();
+  Task<CsvDetectionResult> DetectCsvStructureAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Import CSV file
   /// Operation: PUT /migration/csv/migrate
   /// </summary>
-  Task<Message> MigrateFromCsvAsync();
+  Task<Message> MigrateFromCsvAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Preview CSV import
   /// Operation: PUT /migration/csv/preview
   /// </summary>
-  Task<CsvPreviewResult> PreviewCsvImportAsync();
+  Task<CsvPreviewResult> PreviewCsvImportAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get CSV migration status
   /// Operation: GET /migration/csv/status
   /// </summary>
-  Task<Status> GetCsvMigrationStatusAsync();
+  Task<Status> GetCsvMigrationStatusAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get the auth url from Microsoft Todo
   /// Operation: GET /migration/microsoft-todo/auth
   /// </summary>
-  Task<AuthUrl> GetAsync();
+  Task<AuthUrl> GetAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Migrate all projects, tasks etc. from Microsoft Todo
   /// Operation: POST /migration/microsoft-todo/migrate
   /// </summary>
-  Task<Message> MigrateFromMicrosoftTodoAsync(Apigen.Vikunja.Models.MicrosoftTodoMigration microsoftTodoMigration);
+  Task<Message> MigrateFromMicrosoftTodoAsync(Apigen.Vikunja.Models.MicrosoftTodoMigration microsoftTodoMigration, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get migration status
   /// Operation: GET /migration/microsoft-todo/status
   /// </summary>
-  Task<Status> GetMigrationMicrosoftTodoStatusAsync();
+  Task<Status> GetMigrationMicrosoftTodoStatusAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Import all projects, tasks etc. from a TickTick backup export
   /// Operation: PUT /migration/ticktick/migrate
   /// </summary>
-  Task<Message> PutAsync();
+  Task<Message> PutAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get migration status
   /// Operation: GET /migration/ticktick/status
   /// </summary>
-  Task<Status> GetMigrationTicktickStatusAsync();
+  Task<Status> GetMigrationTicktickStatusAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get the auth url from todoist
   /// Operation: GET /migration/todoist/auth
   /// </summary>
-  Task<AuthUrl> GetMigrationTodoistAuthAsync();
+  Task<AuthUrl> GetMigrationTodoistAuthAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Migrate all lists, tasks etc. from todoist
   /// Operation: POST /migration/todoist/migrate
   /// </summary>
-  Task<Message> MigrateFromTodoistAsync(Apigen.Vikunja.Models.TodoistMigration todoistMigration);
+  Task<Message> MigrateFromTodoistAsync(Apigen.Vikunja.Models.TodoistMigration todoistMigration, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get migration status
   /// Operation: GET /migration/todoist/status
   /// </summary>
-  Task<Status> GetMigrationTodoistStatusAsync();
+  Task<Status> GetMigrationTodoistStatusAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get the auth url from trello
   /// Operation: GET /migration/trello/auth
   /// </summary>
-  Task<AuthUrl> GetMigrationTrelloAuthAsync();
+  Task<AuthUrl> GetMigrationTrelloAuthAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Migrate all projects, tasks etc. from trello
   /// Operation: POST /migration/trello/migrate
   /// </summary>
-  Task<Message> MigrateFromTrelloAsync(Apigen.Vikunja.Models.TrelloMigration trelloMigration);
+  Task<Message> MigrateFromTrelloAsync(Apigen.Vikunja.Models.TrelloMigration trelloMigration, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get migration status
   /// Operation: GET /migration/trello/status
   /// </summary>
-  Task<Status> GetMigrationTrelloStatusAsync();
+  Task<Status> GetMigrationTrelloStatusAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Import all projects, tasks etc. from a Vikunja data export
   /// Operation: POST /migration/vikunja-file/migrate
   /// </summary>
-  Task<Message> PostAsync();
+  Task<Message> PostAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get migration status
   /// Operation: GET /migration/vikunja-file/status
   /// </summary>
-  Task<Status> GetMigrationVikunjaFileStatusAsync();
+  Task<Status> GetMigrationVikunjaFileStatusAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Import all projects, tasks etc. from a WeKan board export
   /// Operation: PUT /migration/wekan/migrate
   /// </summary>
-  Task<Message> MigrateFromWekanAsync();
+  Task<Message> MigrateFromWekanAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Get migration status
   /// Operation: GET /migration/wekan/status
   /// </summary>
-  Task<Status> GetWekanMigrationStatusAsync();
+  Task<Status> GetWekanMigrationStatusAsync(CancellationToken cancellationToken = default);
 
 }

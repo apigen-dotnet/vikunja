@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Apigen.Vikunja.Models;
 
@@ -15,24 +16,24 @@ public partial interface IFilterClient
   /// Creates a new saved filter
   /// Operation: PUT /filters
   /// </summary>
-  Task<SavedFilter> CreateFilterAsync();
+  Task<SavedFilter> CreateFilterAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Gets one saved filter
   /// Operation: GET /filters/{id}
   /// </summary>
-  Task<SavedFilter> GetAsync(int id);
+  Task<SavedFilter> GetAsync(int id, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Updates a saved filter
   /// Operation: POST /filters/{id}
   /// </summary>
-  Task<SavedFilter> UpdateFilterAsync(int id);
+  Task<SavedFilter> UpdateFilterAsync(int id, CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Removes a saved filter
   /// Operation: DELETE /filters/{id}
   /// </summary>
-  Task<SavedFilter> DeleteAsync(int id);
+  Task<SavedFilter> DeleteAsync(int id, CancellationToken cancellationToken = default);
 
 }

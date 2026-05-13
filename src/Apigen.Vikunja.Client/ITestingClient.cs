@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Apigen.Vikunja.Models;
 
@@ -15,12 +16,12 @@ public partial interface ITestingClient
   /// Truncate all tables
   /// Operation: DELETE /test/all
   /// </summary>
-  Task<JsonElement> TruncateAllTablesAsync();
+  Task<JsonElement> TruncateAllTablesAsync(CancellationToken cancellationToken = default);
 
   /// <summary>
   /// Reset the db to a defined state
   /// Operation: PATCH /test/{table}
   /// </summary>
-  Task<List<User>> PatchAsync(string table);
+  Task<List<User>> PatchAsync(string table, CancellationToken cancellationToken = default);
 
 }

@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Apigen.Vikunja.Models;
 
@@ -15,6 +16,6 @@ public partial interface IServiceClient
   /// Info
   /// Operation: GET /info
   /// </summary>
-  Task<VikunjaInfos> GetAsync();
+  Task<VikunjaInfos> GetAsync(CancellationToken cancellationToken = default);
 
 }
