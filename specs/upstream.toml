@@ -1,5 +1,4 @@
-enabled = true
-
-[[sources]]
-url = "https://try.vikunja.io/api/v1/docs.json"
-target = "specs/vikunja.json"
+enabled = false
+# Stable schema exported from vikunja/vikunja:2.6.0; see README.md.
+# The release repository swagger.json omits the required info.version.
+# The public demo serves a development build, not the stable release.

@@ -1,3 +1,4 @@
+prune = true
 # ApiGenerator Configuration File for Vikunja
 # This file configures how C# models and API clients are generated from OpenAPI specifications
 
@@ -12,7 +13,7 @@ global_usings = [
 ]
 
 [[specs]]
-path = "specs/vikunja-patched.json"
+path = "specs/vikunja.json"
 path_prefix = ""
 
 # Models Generation Settings
